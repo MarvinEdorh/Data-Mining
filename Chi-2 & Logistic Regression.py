@@ -5,7 +5,7 @@ import pandas as pd
 
 ################################################ Khi-2 ############################################################### 
 
-ab_test = pd.read_csv('ab_test.csv', sep=";")
+ab_test = pd.read_csv('ab_test.csv', sep=",")
 
 #tri croisé
 cont = pd.crosstab(ab_test['Views'],ab_test['Conversions'])
