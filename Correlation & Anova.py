@@ -1,6 +1,6 @@
 ############################################# UX Analytics Num Variable #############################################
 
-import os; os.chdir('C:/Users/marvi/Desktop/MsMDA/AutoFormation/Python')
+import os; os.chdir('C:/Users/marvin/Desktop/Python')
 import pandas as pd
 
 ############################################### Correlation ########################################################## 
@@ -24,20 +24,20 @@ device_avg
 import seaborn as sn
 bx_plt_device= sn.boxplot(x='deviceCategory', y='Products', data=transactions, color='#99c2a2')
 
-#significativité
+#significativitÃ©
 import statsmodels.api as sm ; from statsmodels.formula.api import ols
 
 Device_Anova = ols('Products ~ C(deviceCategory)', data=transactions).fit()
 anova_table = sm.stats.anova_lm(Device_Anova, typ=2)
 anova_table
 
-# les moyennes de produits achetés en fonction des device sont significatives car la  p-value < 0,05
+# les moyennes de produits achetÃ©s en fonction des device sont significatives car la  p-value < 0,05
 
 #boxplot du CA par device
 import seaborn as sn
 bx_plt_device= sn.boxplot(x='deviceCategory', y='CA', data=transactions, color='#99c2a2')
 
-#significativité
+#significativitÃ©
 import statsmodels.api as sm ; from statsmodels.formula.api import ols
 
 Device_Anova = ols('CA ~ C(deviceCategory)', data=transactions).fit()
