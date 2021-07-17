@@ -31,5 +31,4 @@ data_test_avg_OS_COUNTRY = pd.DataFrame(data_test.groupby(['OS','COUNTRY']).sum(
 print(data_test_avg_OS_COUNTRY)
 
 ################################ Calculer une nouvelle variable #################################### 
-
 data_test_sum_OS['average_likes_sent'] = data_test_sum_OS['LIKES_SENT'] / data_test_sum_OS['CONNECTED']
