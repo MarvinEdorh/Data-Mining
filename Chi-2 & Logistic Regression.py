@@ -1,6 +1,6 @@
 ############################################# A/B Testing  ##########################################################
 
-import os; os.chdir('C:/Users/marvi/Desktop/MsMDA/AutoFormation/Python')
+import os; os.chdir('C:/Users/marvin/Python')
 import pandas as pd
 
 ################################################ Khi-2 ############################################################### 
