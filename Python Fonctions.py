@@ -4,7 +4,8 @@ import os; os.chdir('C:/Users/marvi/Desktop/MsMDA/AutoFormation/Python')
 import pandas as pd
 data_test = pd.read_csv('Data_analyst_test.csv', sep=";")
 
-################################# Fonctions D'aggrégation ########################################## 
+############################################### Fonctions D'aggrégation ########################################## 
+
 data_test.mean() #par défaut moyenne de toutes les colonnes avec variable numérique
 data_test['CONNECTED'].sum() #pour une variable precise (ici la variable "CONNECTED")
 data_test.min() 
