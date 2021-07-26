@@ -59,7 +59,7 @@ np.exp(conf)
 
 #le fait de voir la page A multiplie par 0,9 les chance de conversions (quasi constant)
 
-################################################ GLM ##################################################
+######################################################## GLM ###############################################################
 
 transactions = pd.read_csv('transactions.csv', sep=",")
 
