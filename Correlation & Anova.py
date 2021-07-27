@@ -1,4 +1,4 @@
-############################################# UX Analytics Num Variable #############################################
+############################################# A/B Testing Num Variable #############################################
 
 import os; os.chdir('C:/Users/marvin/Desktop/Python')
 import pandas as pd
