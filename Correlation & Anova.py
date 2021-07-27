@@ -1,4 +1,4 @@
-############################################# A/B Testing Num Variable #############################################
+############################################# A/B Testing Num Variables #############################################
 
 import os; os.chdir('C:/Users/marvin/Desktop/Python')
 import pandas as pd
