@@ -1,8 +1,6 @@
-########################################### Machine Learning  ##########################################################
+########################################### Clustering K-Means  #######################################################
 
 import os; os.chdir('C:/Users/marvin/Desktop/Python')
-
-########################################### Clustering K-Means  #######################################################
 
 import pandas as pd ; import numpy as np ; pays = pd.read_csv('pays.csv', sep=",")
 
@@ -12,7 +10,6 @@ pays_clusters = pd.DataFrame(np.c_[pays.iloc[:,1:4]], columns = col, index = pay
 
 # Attention On appliquer le modele K-Means sur des variables numeriqes, 
 #si varibles categorielles, les tranformer avec une analyse factorielle ou un label encoding en utlisant cat.codes 
-
 
 #On ne sait pas a priori quel est le nombre optimal de clusters pour que le population soit separer de maniere
 #à ce que les groupes constituées soit à la fois le plus homogenes possible et differents les un des autres
