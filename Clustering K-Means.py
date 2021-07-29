@@ -1,4 +1,4 @@
-import os; os.chdir('C:/Users/marvi/Desktop/MsMDA/AutoFormation/Python')
+import os; os.chdir('C:/Users/marvin/Python')
 
 import pandas as pd ; import numpy as np ; acheteurs = pd.read_csv('acheteurs.csv', sep=",")
 
