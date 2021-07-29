@@ -23,8 +23,8 @@ acheteurs_clusters["continent"] = acheteurs_clusters["continent"].cat.codes
 acheteurs_clusters["Product_Category"] = acheteurs_clusters["Product_Category"].astype('category')
 acheteurs_clusters["Product_Category"] = acheteurs_clusters["Product_Category"].cat.codes
 
-#On ne sait pas a priori quel est le nombre optimal de clusters pour que le population soit separer de maniere
-#à ce que les groupes constituées soit à la fois le plus homogenes possible et differents les un des autres
+#On ne sait pas a priori quel est le nombre optimal de clusters pour que le population soit separer 
+#de maniere à ce que les groupes constituées soient à la fois le plus homogenes possible et differents les un des autres.
 #on utlise pour cela la courbe d'elbow en testant une decomposition de 1 à 10 groupes
 
 from sklearn.cluster import KMeans ; import matplotlib.pyplot as plt
