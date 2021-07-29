@@ -4,8 +4,7 @@ import os; os.chdir('C:/Users/marvin/Python')
 
 import pandas as pd ; import numpy as np ; acheteurs = pd.read_csv('acheteurs.csv', sep=",")
 
-#On appliquer le modele K-Means sur des variables numeriqes, 
-#On recode les varibles categorielles avec un label encoding 
+#On appliquer le modele K-Means sur des variables numeriqes, on recode les varibles categorielles avec un label encoding 
 
 acheteurs_clusters = pd.DataFrame(np.c_[acheteurs.iloc[:,1:10]]) 
 
