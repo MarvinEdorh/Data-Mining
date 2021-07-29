@@ -22,9 +22,6 @@ acheteurs_clusters["continent"] = acheteurs_clusters["continent"].cat.codes
 acheteurs_clusters["Product_Category"] = acheteurs_clusters["Product_Category"].astype('category')
 acheteurs_clusters["Product_Category"] = acheteurs_clusters["Product_Category"].cat.codes
 
-
-acheteurs_clusters = pd.DataFrame(np.c_[acheteurs_clusters.iloc[:,0:9]], columns = col)
-
 #On ne sait pas a priori quel est le nombre optimal de clusters pour que le population soit separer de maniere
 #à ce que les groupes constituées soit à la fois le plus homogenes possible et differents les un des autres
 #on utlise pour cela la courbe d'elbow en testant une decomposition de 1 à 10 groupes
@@ -56,4 +53,4 @@ pays_clusters_means = pd.DataFrame(acheteurs.groupby('cluster').mean()) ; pays_c
 
 acheteurs.to_csv('acheteurs_clusters.csv', index = False)
 
-#https://datastudio.google.com/reporting/fb6b9a87-7aff-41b6-89ce-b12a260b9658/page/p_2t5s4p71lc
+#Dataviz : ttps://datastudio.google.com/reporting/fb6b9a87-7aff-41b6-89ce-b12a260b9658/page/p_2t5s4p71lc
