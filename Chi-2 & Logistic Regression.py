@@ -23,8 +23,9 @@ pd.DataFrame({'Stats':['test statistic','p-value','df'], 'Value' : khi_2[:][0:3]
 #################################### Régression Logistique Binomial #################################################
 #On modélise le fait d'effectuer une conversion en fonction du type de page vue 
 #par rapport au profil de réference (ici le profil de reference est d'avoir vu la page orginal), 
-#mais généralement on prend comme profil de reference des vars exlicatives les modalités qui on le plus fort effectif
-#Python prend comme profil de reference la premiere modalité dans l'ordre alphabétique
+#Lorsqu'on ne sait pas on prend généralement comme profil de reference 
+#les modalités des variables exlicatives qui on le plus fort effectif
+#Python prend comme profil de reference la premiere modalité dans l'ordre alphabétique de chaque variable explicative
 #en regression logistique l'evenement à modeliser est codé 1 et le non evenement 0
 
 # Méthode 1
@@ -54,10 +55,10 @@ conf['Odds Ratio'] = result.params
 conf.columns = ['5%', '95%', 'Odds Ratio']
 np.exp(conf)
 
-#le fait de voir la page A multiplie par 0,9 par 
-#rapport au fait d'avoir vu la page original les chance de conversions (quasi constant)
+#le fait de voir la page A multiplie par 0,9 (quasi constant) 
+#par rapport au fait d'avoir vu la page original les chance de conversions 
 
-#le fait de voir la page A multiplie par 0,9 les chance de conversions (quasi constant)
+#le fait de voir la page B multiplie par 0,9 (quasi constant) les chance de conversions 
 
 ######################################################## GLM ###########################################################
 
