@@ -10,11 +10,12 @@ import os; os.chdir('C:/Users/marvin/python')
 
 import numpy as np ; import pandas as pd ; from google.cloud import bigquery
 
-#https://cloud.google.com/docs/authentication/production
+#Création d'un compte de service GCP : https://cloud.google.com/docs/authentication/production
+#Authentification du compte dans Python en ajouant lien du fichier JSON téléchargé en local après la creation de la clé
 
 client = bigquery.Client.from_service_account_json(
-json_credentials_path='mrvtestproject45-bbc9aec8eae9.json', 
-project='mrvtestproject45')
+json_credentials_path='data_pipeline-bbc9aec8eae9.json', 
+project='data_pipeline')
 
 query = """
 WITH 
