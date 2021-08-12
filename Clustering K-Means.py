@@ -1,7 +1,7 @@
 #################################### ETL - BigQuery - Python - Data Studio #########################################
 
 #ETL des données e-commerce Google Analytics importées dans BigQuery vers Python afin d'effectuer une segmentation
-#des acheteurs en utilsant un modèle de clustering k-means afin de mieux comprendre les differnts profils. Les données
+#des achats en utilsant un modèle de clustering k-means afin de mieux comprendre les differnts profils. Les données
 #des segments constitués seront ensuite envoyer vers Google Cloud Platform pour une visualisation sur Google Data Studio. 
 
 import os; os.chdir('C:/Users/marvin/python')
@@ -53,9 +53,11 @@ ORDER BY CA DESC """
 
 query_results = client.query(query) ; query_results = query_results.result()
 
-ID_Transaction = [] ; deviceCategory = [] ; operatingSystem = [] ; campaign = [] ; 
-medium = [] ; country = [] ; Product = [] ; Product_Category = [] ; Totals_Product_Visits = [] ;
-Totals_Product_Category_Visits = [] ; CA = [] ;
+#Table des résultats
+
+ID_Transaction = [] ; deviceCategory = [] ; operatingSystem = [] ; campaign = [] 
+medium = [] ; country = [] ; Product = [] ; Product_Category = [] ; Totals_Product_Visits = []
+Totals_Product_Category_Visits = [] ; CA = [] 
 
 for row in query_results: 
     ID_Transaction.append(row[0]) 
@@ -80,11 +82,9 @@ BigQuery_table = {"ID_Transaction":ID_Transaction,
                   "Product_Category":Product_Category,
                   "Totals_Product_Visits":Totals_Product_Visits,
                   "Totals_Product_Category_Visits":Totals_Product_Category_Visits,
-                  "CA":CA,} 
+                  "CA":CA} 
 
-BigQuery_table = pd.DataFrame(BigQuery_table)
-
-#BigQuery_table.to_csv('clustering.csv')
+BigQuery_table = pd.DataFrame(BigQuery_table) #BigQuery_table.to_csv('clustering.csv')
 
 ################################################### Clustering #################################################
 
