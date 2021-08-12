@@ -8,8 +8,6 @@ import pandas as pd ; import numpy as np ; acheteurs = pd.read_csv('acheteurs.cs
 
 acheteurs_clusters = pd.DataFrame(np.c_[acheteurs.iloc[:,1:10]]) 
 
-import pandas as pd ; import numpy as np ; acheteurs = pd.read_csv('acheteurs.csv', sep=",")
-
 col = list(acheteurs.columns); del col[0]
 acheteurs_clusters = pd.DataFrame(np.c_[acheteurs.iloc[:,1:10]], columns = col ) 
 acheteurs_clusters["deviceCategory"] = acheteurs_clusters["deviceCategory"].astype('category')
