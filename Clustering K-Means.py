@@ -1,3 +1,8 @@
+##################################### ETL - BigQuery - Python - Data Studio #############################################
+
+#Analyses des données e-commerce Google Analytics importées dans BigQuery avec Python afin d'effectuer segmentation
+#des acheteurs
+
 import os; os.chdir('C:/Users/marvi/Desktop/MsMDA/AutoFormation/SQL BigQuery')
 
 ################################################### SQL BigQuery #################################################
