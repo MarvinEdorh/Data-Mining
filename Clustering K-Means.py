@@ -1,4 +1,4 @@
-##################################### ETL - BigQuery - Python - Data Studio ###########################################
+#################################### ETL - BigQuery - Python - Data Studio #########################################
 
 #Analyses des données e-commerce Google Analytics importées dans BigQuery avec Python afin d'effectuer segmentation
 #des acheteurs
