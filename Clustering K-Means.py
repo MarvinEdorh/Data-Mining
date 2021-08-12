@@ -17,6 +17,10 @@ client = bigquery.Client.from_service_account_json(
 json_credentials_path='data_pipeline-bbc9aec8eae9.json', 
 project='data_pipeline')
 
+#Requête SQL : Pour chaque achat on selectionne le device, l'os, la source de traffic et de campagne, le pays, 
+#les produits et catégorie produits achetés, le nombre de visites que l'acheteur a effectué sur les produits 
+#et catégorie produits achetés, et le CA.
+
 query = """
 WITH 
 transactions AS (
