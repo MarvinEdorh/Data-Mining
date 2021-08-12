@@ -1,7 +1,7 @@
 #################################### ETL - BigQuery - Python - Data Studio #########################################
 
 #Analyses des données e-commerce Google Analytics importées dans BigQuery avec Python afin d'effectuer segmentation
-#des acheteurs
+#des acheteurs en utilsant un modèle de clustering k-means afin de mener des campagnes marketing ciblées
 
 import os; os.chdir('C:/Users/marvi/Desktop/MsMDA/AutoFormation/SQL BigQuery')
 
