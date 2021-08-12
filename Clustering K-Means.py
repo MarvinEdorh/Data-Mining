@@ -2,7 +2,7 @@
 
 #ETL des données e-commerce Google Analytics importées dans BigQuery vers Python afin d'effectuer une segmentation
 #des achats en utilsant un modèle de clustering k-means afin de mieux comprendre les differnts profils. Les données
-#des segments constitués seront ensuite envoyer vers Google Cloud Platform pour une visualisation sur Google Data Studio. 
+#des segments constitués seront ensuite envoyer vers Google Cloud Platform pour une visualisation sur Data Studio. 
 
 import os; os.chdir('C:/Users/marvin/python')
 
@@ -108,9 +108,9 @@ clustering["Product"] = clustering["Product"].cat.codes
 clustering["Product_Category"] = clustering["Product_Category"].astype('category')
 clustering["Product_Category"] = clustering["Product_Category"].cat.codes
 
-#On ne sait pas a priori quel est le nombre optimal de clusters pour que le population soit separer 
-#de maniere à ce que les groupes constituées soient à la fois le plus homogenes possible et differents les un des autres.
-#on utlise pour cela la courbe d'elbow en testant une decomposition de 1 à 10 groupes
+#On ne sait pas a priori quel est le nombre optimal de clusters pour que le population soit separer de maniere 
+#à ce que les segments constituées soient à la fois le plus homogenes possible et differents les un des autres.
+#On utlise pour cela la courbe d'elbow en testant une décomposition de 1 à 10 groupes.
 
 from sklearn.cluster import KMeans ; import matplotlib.pyplot as plt
 
@@ -124,18 +124,15 @@ for k in K :
 plt.figure(figsize=(16,8)) ; plt.plot(K, distortions, 'bx-') ; plt.xlabel('k') ; plt.ylabel('Distortion')
 plt.title('The Elbow Method showing the optimal k') ; plt.show()
 
-#la courbe d'elbow montre qu'il est optimal de constituer 4 groupes, le point de cassure de la courbe
-
+#la courbe d'elbow montre qu'il est optimal de constituer 3 clusters, le point de cassure de la courbe
 kmeanModel = KMeans(n_clusters= 3) ; kmeanModel.fit(clustering)
 
-#On assigne chaque pays à son cluster
+#On assigne chaque transaction à son cluster
 BigQuery_table['cluster'] = kmeanModel.predict(clustering)
 
 #Caracterisation des clusters
-
-BigQuery_table.groupby('cluster').count()[['ID_Transaction']]
-
-clusters_means = pd.DataFrame(BigQuery_table.groupby('cluster').mean()) ; clusters_means
+BigQuery_table.groupby('cluster').count()[['ID_Transaction']] #effectif des clusters
+clusters_means = pd.DataFrame(BigQuery_table.groupby('cluster').mean()) ; clusters_means  #moyennes varibles numériques
 
 #Après analyses, export des résultats vers Google Cloud Platform BigQuery Storage 
 #afin de mieux les visualiser sur des outils BI de Data Visualisation comme Tableau ou Data Studio
