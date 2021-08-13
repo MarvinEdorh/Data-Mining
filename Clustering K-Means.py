@@ -88,8 +88,7 @@ BigQuery_table = pd.DataFrame(BigQuery_table) #BigQuery_table.to_csv('clustering
 
 ################################################### Clustering #################################################
 
-#On applique le modele K-Means sur des variables numeriqes, 
-#on recode les varibles categorielles par un label encoding 
+#On applique le modele K-Means sur des variables numeriqes, on recode les varibles categorielles par un label encoding 
 
 col = list(BigQuery_table.columns); del col[0]
 clustering  = pd.DataFrame(np.c_[BigQuery_table.iloc[:,1:11]], columns = col ) 
