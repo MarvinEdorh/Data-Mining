@@ -137,7 +137,7 @@ clusters_means = pd.DataFrame(BigQuery_table.groupby('cluster').mean()) ; cluste
 from pandas.io import gbq
 BigQuery_table.to_gbq(destination_table='test.clustering', project_id='data_pipeline', if_exists='replace')
 
-#dataviz : https://datastudio.google.com/reporting/fb6b9a87-7aff-41b6-89ce-b12a260b9658/page/p_2t5s4p71lc
+#dataviz : https://datastudio.google.com/reporting/70144ced-e19d-4010-9d93-721df23ea257/page/NJrXC
 
 #En faisant tourner régulierement ce process on peut voir l'évolution des comportement e-commerce 
 #pour une meilleure prise de décision
