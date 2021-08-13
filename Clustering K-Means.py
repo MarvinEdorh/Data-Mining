@@ -131,7 +131,7 @@ BigQuery_table['cluster'] = kmeanModel.predict(clustering)
 
 #Caracterisation des clusters
 BigQuery_table.groupby('cluster').count()[['ID_Transaction']] #effectif des clusters
-clusters_means = pd.DataFrame(BigQuery_table.groupby('cluster').mean()) ; clusters_means  #moyennes varibles numériques
+clusters_means = pd.DataFrame(BigQuery_table.groupby('cluster').mean()) ;clusters_means #moyennes varibles numériques
 
 #Export des clusters vers Google Cloud Platform BigQuery Storage afin de mieux les visualiser sur Google Data Studio
 from pandas.io import gbq
