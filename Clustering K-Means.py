@@ -120,7 +120,7 @@ for k in K :
     kmeanModel.fit(clustering)
     distortions.append(kmeanModel.inertia_)
 
-plt.figure(figsize=(16,8)) ; plt.plot(K, distortions, 'bx-') ; plt.xlabel('k') ; plt.ylabel('Distortion')
+plt.figure(figsize=(14,8)) ; plt.plot(K, distortions, 'bx-') ; plt.xlabel('k') ; plt.ylabel('Distortion')
 plt.title('The Elbow Method showing the optimal k') ; plt.show()
 
 #la courbe d'elbow montre qu'il est optimal de constituer 3 clusters, le point de cassure de la courbe
