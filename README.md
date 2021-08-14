@@ -9,6 +9,6 @@ Clusters dataviz : https://datastudio.google.com/s/hRcohz4T4DI
 
 # Kaplan Meier Survival
 
-![KMF](https://user-images.githubusercontent.com/83826055/129444218-7926e8db-d0c5-4c24-b8d7-ba20c09965c1.png)
+![KMF](https://user-images.githubusercontent.com/83826055/129444429-fcef0f33-b30f-4c5c-9b22-af75347ed59e.png)
 
-![KMF_Device](https://user-images.githubusercontent.com/83826055/129444228-7e59a4c4-3a60-48e6-a94f-a304765ce9e3.png)
+![KMF_Device](https://user-images.githubusercontent.com/83826055/129444431-0271e2aa-c5cc-4988-9497-2b6b61337bb1.png)
