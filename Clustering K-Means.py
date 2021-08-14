@@ -4,7 +4,7 @@
 #des achats en utilsant un modèle de clustering k-means afin de mieux comprendre les differnts profils. Les données
 #des segments constitués seront ensuite envoyer vers Google Cloud Platform pour une visualisation sur Data Studio. 
 
-import os; os.chdir('C:/Users/marvin/python')
+import os; os.chdir('C:/Users/marvin/Desktop/Python')
 
 ################################################### SQL BigQuery #################################################
 
