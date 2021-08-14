@@ -4,8 +4,6 @@ import os; os.chdir('C:/Users/marvin/python')
 
 import numpy as np ; import pandas as pd ; from google.cloud import bigquery
 
-#https://cloud.google.com/docs/authentication/production
-
 client = bigquery.Client.from_service_account_json(
 json_credentials_path='data_pipeline-bbc9aec8eae9.json', 
 project='data_pipeline')
@@ -23,17 +21,18 @@ FROM `bigquery-public-data.google_analytics_sample.ga_sessions_*`),
 
 transactions AS (
 SELECT fullvisitorid, MIN(date) AS date_transactions, 1 AS transaction
-FROM `bigquery-public-data.google_analytics_sample.ga_sessions_*` AS ga, UNNEST(ga.hits) AS hits
-WHERE  hits.transaction.transactionId IS NOT NULL GROUP BY fullvisitorid),
+FROM `bigquery-public-data.google_analytics_sample.ga_sessions_*` AS ga, 
+UNNEST(ga.hits) AS hits WHERE  hits.transaction.transactionId IS NOT NULL GROUP BY fullvisitorid),
 
 device_transactions AS (
 SELECT DISTINCT fullvisitorid, date, device.deviceCategory
-FROM `bigquery-public-data.google_analytics_sample.ga_sessions_*` AS ga, UNNEST(ga.hits) AS hits
-WHERE hits.transaction.transactionId IS NOT NULL),
+FROM `bigquery-public-data.google_analytics_sample.ga_sessions_*` AS ga, 
+UNNEST(ga.hits) AS hits WHERE hits.transaction.transactionId IS NOT NULL),
 
 visits_transactions AS (
 SELECT visit.fullvisitorid, date_first_visit, date_transactions, date_last_visit , 
-       device_visit.deviceCategory AS device_last_visit, device_transactions.deviceCategory AS device_transaction, 
+       device_visit.deviceCategory AS device_last_visit, 
+       device_transactions.deviceCategory AS device_transaction, 
        IFNULL(transactions.transaction,0) AS transaction
 FROM visit LEFT JOIN transactions ON visit.fullvisitorid = transactions.fullvisitorid
 LEFT JOIN device_visit ON visit.fullvisitorid = device_visit.fullvisitorid 
@@ -48,7 +47,8 @@ SELECT fullvisitorid, date_first_visit,
        CASE WHEN device_transaction IS NULL THEN device_last_visit ELSE device_transaction END AS device, transaction
 FROM visits_transactions )
 
-SELECT fullvisitorid, DATE_DIFF(PARSE_DATE('%Y%m%d',date_event), PARSE_DATE('%Y%m%d', date_first_visit),DAY) AS time, 
+SELECT CONCAT("ID",fullvisitorid) AS fullvisitorid, 
+       DATE_DIFF(PARSE_DATE('%Y%m%d',date_event),PARSE_DATE('%Y%m%d', date_first_visit),DAY) AS time, 
        transaction, device FROM mortality_table"""
 
 query_results = client.query(query) ; query_results = query_results.result()
