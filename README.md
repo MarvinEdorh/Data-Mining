@@ -1,7 +1,7 @@
-# Chi-2 & Logistic Regression
-A/B Testing process on categorical variables
 # Correlation & Anova
 A/B Testing process on numeric variables
+# Chi-2 & Logistic Regression
+A/B Testing process on categorical variables
 # K-Means Clustering
 Clusters dataviz : https://datastudio.google.com/s/hRcohz4T4DI
 
