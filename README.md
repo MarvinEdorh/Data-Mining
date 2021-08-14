@@ -1,7 +1,10 @@
 # Correlation & Anova
 A/B Testing process on numeric variables
+
 # Chi-2 & Logistic Regression
 A/B Testing process on categorical variables
+On modélise le fait d'effectuer une conversion en fonction du type de page vue par rapport au profil de réference (ici le profil de reference est d'avoir vu la page orginal),Lorsqu'on ne sait pas on prend généralement comme profil de reference les modalités des variables exlicatives qui on le plus fort effectif Python prend comme profil de reference la premiere modalité dans l'ordre alphabétique de chaque variable explicative en regression logistique l'evenement à modeliser est codé 1 et le non evenement 0
+
 # K-Means Clustering
 Clusters dataviz : https://datastudio.google.com/s/hRcohz4T4DI
 
