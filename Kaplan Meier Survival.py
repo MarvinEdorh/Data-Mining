@@ -1,4 +1,4 @@
-import os; os.chdir('C:/Users/marvin/python')
+import os; os.chdir('C:/Users/marvin/Desktop/Python')
 
 ################################################### SQL BigQuery #################################################
 
