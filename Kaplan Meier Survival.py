@@ -136,7 +136,3 @@ cph.summary # -0.946602,  8.758189e-221
 # Plot the survival function :
 d_data = survival_data.iloc[0:5,:]
 cph.predict_survival_function(d_data).plot()
-
-
-
-
