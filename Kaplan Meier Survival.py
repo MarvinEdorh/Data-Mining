@@ -136,3 +136,93 @@ cph.summary # -0.946602,  8.758189e-221
 # Plot the survival function :
 d_data = survival_data.iloc[0:5,:]
 cph.predict_survival_function(d_data).plot()
+
+################################## Retention ###############################################
+
+query = """
+WITH 
+
+visit AS (
+SELECT fullvisitorid, MIN(date) AS date_first_visit, MAX(date) AS date_last_visit 
+FROM `bigquery-public-data.google_analytics_sample.ga_sessions_*` GROUP BY fullvisitorid),
+
+device_visit AS (
+SELECT DISTINCT fullvisitorid, date, device.deviceCategory
+FROM `bigquery-public-data.google_analytics_sample.ga_sessions_*`),
+
+transactions AS (
+SELECT fullvisitorid, MAX(date) AS date_transactions, 1 AS transaction
+FROM `bigquery-public-data.google_analytics_sample.ga_sessions_*` AS ga, UNNEST(ga.hits) AS hits
+WHERE  hits.transaction.transactionId IS NOT NULL GROUP BY fullvisitorid),
+
+device_transactions AS (
+SELECT DISTINCT fullvisitorid, date, device.deviceCategory
+FROM `bigquery-public-data.google_analytics_sample.ga_sessions_*` AS ga, UNNEST(ga.hits) AS hits
+WHERE hits.transaction.transactionId IS NOT NULL),
+
+visits_transactions AS (
+SELECT visit.fullvisitorid, date_first_visit, date_transactions, date_last_visit , 
+       device_visit.deviceCategory AS device_last_visit, device_transactions.deviceCategory AS device_transaction, 
+       IFNULL(transactions.transaction,0) AS transaction
+FROM visit LEFT JOIN transactions ON visit.fullvisitorid = transactions.fullvisitorid
+LEFT JOIN device_visit ON visit.fullvisitorid = device_visit.fullvisitorid 
+AND visit.date_last_visit = device_visit.date
+
+LEFT JOIN device_transactions ON visit.fullvisitorid = device_transactions.fullvisitorid 
+AND transactions.date_transactions = device_transactions.date ),
+
+mortality_table AS (
+SELECT fullvisitorid, date_first_visit, 
+       CASE WHEN date_transactions IS NULL THEN date_last_visit ELSE date_transactions  END AS date_event, 
+       CASE WHEN device_transaction IS NULL THEN device_last_visit ELSE device_transaction END AS device, transaction
+FROM visits_transactions )
+
+SELECT fullvisitorid, DATE_DIFF(PARSE_DATE('%Y%m%d',date_event), PARSE_DATE('%Y%m%d', date_first_visit),DAY) AS time, 
+       transaction, device FROM mortality_table"""
+
+query_results = client.query(query) ; query_results = query_results.result()
+
+fullvisitorid = [] ; time = [] ; device	= [] ; transaction = [] 
+
+for row in query_results: 
+    fullvisitorid.append(row[0]) 
+    time.append(row[1])
+    transaction.append(row[2])
+    device.append(row[3])
+    
+BigQuery_table_2 = {"fullvisitorid":fullvisitorid,
+                    "time":time,
+                    "transaction":transaction,
+                    "device":device} 
+
+BigQuery_table_2 = pd.DataFrame(BigQuery_table_2) #BigQuery_table.to_csv('survie.csv')
+
+survival_data_2 = pd.DataFrame(np.c_[BigQuery_table_2.iloc[:,1:4]], columns = col,
+                               index = BigQuery_table_2['fullvisitorid']) 
+
+kmf_2 = KaplanMeierFitter()
+kmf_2.fit(survival_data_2['time'],survival_data_2['transaction'])
+
+plt.figure(figsize=(15,10)) ; kmf.plot(label='conversion') ; kmf_2.plot(label='retention')
+plt.xlabel('time in days') ; plt.ylabel('survival probability') ; plt.title("Survival Function")
+plt.ylim([0,4,1]) 
+
+# Dividing data into groups :
+desktop_2 = survival_data_2.query("device == 'desktop'")
+mobile_2 = survival_data_2.query("device == 'mobile'")
+tablet_2 = survival_data_2.query("device == 'tablet'")
+
+# kmf_m for male data.
+kmf_desktop_2 = KaplanMeierFitter() 
+kmf_mobile_2 = KaplanMeierFitter() 
+kmf_tablet_2 = KaplanMeierFitter() 
+
+kmf_desktop_2.fit(desktop_2['time'],desktop_2['transaction'])
+kmf_mobile_2.fit(mobile_2['time'],mobile_2['transaction'])
+kmf_tablet_2.fit(tablet_2['time'],tablet_2['transaction'])
+
+# Plot the survival_function data :
+plt.figure(figsize=(15,10)) ; kmf_desktop_2.plot(label='desktop')
+kmf_mobile_2.plot(label='mobile') ; kmf_tablet_2.plot(label='tablet')
+plt.xlabel("time in days") ; plt.ylabel("survival probability") 
+plt.title("Survival Functions") ; plt.ylim([0.3,1])  
