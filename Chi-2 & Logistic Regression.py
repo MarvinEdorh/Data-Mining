@@ -60,6 +60,8 @@ np.exp(conf)
 
 ######################################################## GLM ###########################################################
 
+#On analyse le montant des transactions en fonction du pays et du device de l'acheteur
+
 transactions = pd.read_csv('transactions.csv', sep=",")
 
 device = pd.DataFrame(transactions.groupby('deviceCategory').count()[['ID_Transaction']]) 
