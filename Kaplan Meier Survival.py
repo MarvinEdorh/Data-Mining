@@ -1,4 +1,4 @@
-import os; os.chdir('C:/Users/marvi/Desktop/MsMDA/AutoFormation/SQL BigQuery')
+import os; os.chdir('C:/Users/marvin/python')
 
 ################################################### SQL BigQuery #################################################
 
