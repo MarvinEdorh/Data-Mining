@@ -9,7 +9,7 @@ SELECT DISTINCT fullvisitorid, date, device.deviceCategory
 FROM `bigquery-public-data.google_analytics_sample.ga_sessions_*`),
 
 transactions AS (
-SELECT fullvisitorid, MAX(date) AS date_transactions, 1 AS transaction
+SELECT fullvisitorid, MIN(date) AS date_transactions, 1 AS transaction
 FROM `bigquery-public-data.google_analytics_sample.ga_sessions_*` AS ga, UNNEST(ga.hits) AS hits
 WHERE  hits.transaction.transactionId IS NOT NULL GROUP BY fullvisitorid),
 
