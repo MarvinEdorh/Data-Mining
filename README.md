@@ -2,7 +2,7 @@
 A/B Testing process on numeric variables
 
 # Chi-2 & Logistic Regression
-A/B Testing process on categorical variables
+Afin de savoir si la mis à jour d'une page a un effet significatif sur les conversions, on peut utilser le test statistique du chi-2 ainsi qu'une regression logistique dans un process d'A/B testing.  
 On modélise le fait d'effectuer une conversion en fonction du type de page vue par rapport au profil de réference (ici le profil de reference est d'avoir vu la page orginal),Lorsqu'on ne sait pas on prend généralement comme profil de reference les modalités des variables exlicatives qui on le plus fort effectif Python prend comme profil de reference la premiere modalité dans l'ordre alphabétique de chaque variable explicative en regression logistique l'evenement à modeliser est codé 1 et le non evenement 0
 
 # K-Means Clustering
