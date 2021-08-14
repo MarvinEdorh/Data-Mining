@@ -1,10 +1,9 @@
 # Correlation & Anova
-A/B Testing process on numeric variables
+Demo : https://github.com/MarvinEdorh/Data-Mining/blob/main/Correlation%20%26%20Anova.py
 
 l'hypothèse nulle qui envisage une egalité entre les groupes, c'est à dire qu'il y aurait ici en propotion autant de conversions effectuées parmis les personnes qui on vu la page originale que parmis ceux qui on vu la page A et que ceux qui on vu la page B. Si cette hypothèse est vraie Le test calcule la probabilité sous l'hypothèse nulle 
 
 # Chi-2 & Logistic Regression 
-
 Demo : https://github.com/MarvinEdorh/Data-Mining/blob/main/Chi-2%20%26%20Logistic%20Regression.py
 
 Afin de savoir si la mis à jour d'une page a un effet significatif sur les conversions, on peut utilser le test statistique du chi-2 dans un process d'A/B testing afin d'analyser la significativité des résultats. Le test du chi-2 est un test statique qui permert de savoir si 2 variables catégorielles sont liées entre elles, ici la premiere variable sera le type de page vue (orginale, A ou B) et la seconde, le fait d'effectuer une conversion (oui ou non). Comme tout test statistique, le test du chi-2 pose l'hypothèse nulle H0 estimant d'une egalité entre les groupes, c'est à dire ici qu'il y aurait en propotion autant de conversions effectuées parmis les personnes qui ont vu la page originale que parmis celles qui ont vu la page A et celles qui ont vu la page B, et l'hypothèse alternative H1 estimant d'une difference entre les groupes. Si la p-valeure associée au test est inférieure à 5% alors on rejette H0 et on se tourne vers H1 pour en conclure qu'il y a bien un lien significatif entre le type de page vue et le fait d'effectuer une conversion. 
