@@ -11,6 +11,8 @@ Afin de savoir si la mis à jour d'une page a un effet significatif sur les conv
 
 Si à la suite du test du chi-2 on conclut à un lien significatif entre les 2 varibles et que les variables dependantes est dicotomique alors il est pertinent d'effectuer un modèle de regression logistique binomiale afin de mesurer l'impact des variables explicatives sur celle-ci, ici on modélise le fait d'effectuer une conversion (variable dependante) en fonction du type de page vue (variable explicative). Le modèle de regression logistique calcule la probabilité qu'un individu à de prendre la premiere modailité pour la variable dépendante sachant ses modalités pour les variables explicatives par rapport au profil de réference. Généralement on prend comme profil de reference les modalités des variables exlicatives qui on le plus fort effectif mais ici dans le cadre d'un A/B testing le profil de réference sera le fait d'avoir vu la page orginale. On poura ainsi mesurer de combien fait evoluer les chances d'effectuer une transaction le fait d'avoir vu la page A ou B par rapport au fait d'avoir vu la page originale.
 
+Également si on veut maintenant modéliser une variable numérique en fonction de variables catégorielles on peut utiliser le modele lineaire généralisé qui comme la regression logistique calcule l'impact des autres modalités des variables explicatives sur la variable dépendante par rapport au profil de reférence. On peut par exemple analyser pour un site e-commerce le montant des transactions en fonction des versions du site et voir de combien fait evoluer ce motant le fait d'avoir vu la page A ou B par raport au fait d'avoir vu la page originale
+
 
 # K-Means Clustering
 Clusters dataviz : https://datastudio.google.com/s/hRcohz4T4DI
