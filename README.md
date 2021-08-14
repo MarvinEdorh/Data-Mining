@@ -2,8 +2,8 @@
 A/B Testing process on numeric variables
 
 # Chi-2 & Logistic Regression
-Afin de savoir si la mis à jour d'une page a un effet significatif sur les conversions, on peut utilser le test statistique du chi-2 ainsi qu'une regression logistique dans un process d'A/B testing. Le test du chi-2 est un test statique qui permert de savoir si 2 variables catégorielles sont liées entre elles, ici la premiere variable sera le type de page vue (orginale, A ou B) et la seconde, le fait d'effectuer une conversion (oui ou non).
-On modélise le fait d'effectuer une conversion en fonction du type de page vue par rapport au profil de réference (ici le profil de reference est d'avoir vu la page orginal),Lorsqu'on ne sait pas on prend généralement comme profil de reference les modalités des variables exlicatives qui on le plus fort effectif Python prend comme profil de reference la premiere modalité dans l'ordre alphabétique de chaque variable explicative en regression logistique l'evenement à modeliser est codé 1 et le non evenement 0
+Afin de savoir si la mis à jour d'une page a un effet significatif sur les conversions, on peut utilser le test statistique du chi-2 ainsi qu'une regression logistique dans un process d'A/B testing. Le test du chi-2 est un test statique qui permert de savoir si 2 variables catégorielles sont liées entre elles, ici la premiere variable sera le type de page vue (orginale, A ou B) et la seconde, le fait d'effectuer une conversion (oui ou non). Le test du chi-2 pose H0, l'hypothèse nulle qui envisage une egalité entre les groupes, c'est à dire qu'il y aurait ici en propotion autant de conversions effectuées parmis les personnes qui on vu la page originale que parmis ceux qui on vu la page A et que ceux qui on vu la page B. Si cette hypothèse est vraie
+
 
 # K-Means Clustering
 Clusters dataviz : https://datastudio.google.com/s/hRcohz4T4DI
