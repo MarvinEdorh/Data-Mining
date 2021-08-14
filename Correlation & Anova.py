@@ -1,12 +1,11 @@
 ############################################# A/B Testing Num Variables #############################################
 
-import os; os.chdir('C:/Users/marvin/Desktop/Python')
-import pandas as pd
+import os; os.chdir('C:/Users/marvin/Desktop/Python') ; import pandas as pd
 
 ############################################### Correlation ########################################################## 
 pays = pd.read_csv('pays.csv', sep=",")
 
-#DataFrame de la matrice de correlation de toute les variables numeriques
+#DataFrame de la matrice de correlation de toutes les variables numeriques
 correl  = pays.corr(method='pearson') 
 # (ici il y a une forte de correlation entre le nb de visiteurs et le CA 
 # car le coeff de correlation est proche de 1 en valeur absolue )
