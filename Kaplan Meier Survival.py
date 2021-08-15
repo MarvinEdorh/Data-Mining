@@ -77,19 +77,19 @@ survival_data = pd.DataFrame(np.c_[BigQuery_table.iloc[:,1:4]], columns = col,
                              index = BigQuery_table['fullvisitorid']) 
 
 from lifelines import KaplanMeierFitter ; import matplotlib.pyplot as plt
+kmf = KaplanMeierFitter() ; kmf.fit(survival_data['time'],survival_data['transaction'])
 
-kmf = KaplanMeierFitter()
-kmf.fit(survival_data['time'],survival_data['transaction'])
+event_table = kmf.event_table #table des évenements
+kmf.predict(11) #prediction d'etre en vie à 11 jours
+survival_probability = kmf.survival_function_ #table des probabilités de survie
 
-event_table = kmf.event_table
-kmf.predict(11)
-survival_probability = kmf.survival_function_
-
+#Courbe de la fonction de survie de Kaplan Meier
 kmf.plot()
 plt.xlabel("time in days")
 plt.ylabel("survival probability")
 plt.title("KMF")
 
+#Courbe plus lisible
 plt.figure(figsize=(15,10)) ; kmf.plot()
 plt.xlabel('time in days') ; plt.ylabel('survival probability') ; plt.title("Survival Function")
 plt.ylim([0.45,1]) 
