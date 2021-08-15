@@ -42,4 +42,6 @@ On regarde maintenant la survie en fonction du device et on constate que la surv
 
 ![KMF_2](https://user-images.githubusercontent.com/83826055/129450587-cf45114a-ea53-49d4-b7ee-a1bb04a8b7f3.png)
 
+Egalement s'il on souhaite maintenant non plus analyser la rapidité des conversions ma la durée de retention, on selection plus la durée avec le premier mais le dernier. On maintenant que la survie en terme de retention est moins bonne.
+
 ![KMF_Device_2](https://user-images.githubusercontent.com/83826055/129450589-e52c90a2-8391-4d86-9827-43318689c2ae.png)
