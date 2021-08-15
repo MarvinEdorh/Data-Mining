@@ -22,11 +22,11 @@ En markerketing digital il est assez important de bien connaitre ses consomateur
 Dans un contexte e-commerce on va par exemple segmenter les transactions afin de mieux comprendre le compotertemnt des acheteurs sur le site. On va donc crées un jeu de données provennant des Google Analytics requêtées dans BigQuery indicant pour chaque achat le device et son os, la source de traffic et de campagne de l'acheteur, son pays, les produits et catégories produits achetés, le nombre de visites que l'acheteur a effectué sur les produits et catégories produits achetés, et enfin le CA.
 L'inconvenient du modele K-Means est qu'on ne sait pas a priori quel est le nombre optimal de groupes (clusters) il faut choisir pour que le population soit separer de maniere à ce que les clusters constitués soient à la fois le plus homogenes possible et differents les un des autres. On utlise pour cela la courbe d'elbow en testant une décomposition de 1 à 10 groupes.
 
-Clusters dataviz : https://datastudio.google.com/s/hRcohz4T4DI
+![Courbe d'elbow](https://user-images.githubusercontent.com/83826055/129334001-457b71dd-c30f-43de-897e-d2dab6f01a60.png)
 
 Le nombre optimal de clusters qu'il faut choisir afin que la population soit découpée de la meilleure des maniere est celui du point des abscisses où la courbe marque une cassure et devient linéaire. On voit ici que la meilleure des maniere de seglenter nos acheteurs est de les séparer en 3 groupes.
 
-![Courbe d'elbow](https://user-images.githubusercontent.com/83826055/129334001-457b71dd-c30f-43de-897e-d2dab6f01a60.png)
+Clusters dataviz : https://datastudio.google.com/s/hRcohz4T4DI
 
 # Kaplan Meier Survival
 
