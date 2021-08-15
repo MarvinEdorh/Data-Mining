@@ -1,4 +1,4 @@
-import os; os.chdir('C:/Users/marvin/Desktop/Python')
+import os; os.chdir('C:/Users/marvin/Desktop/SQL BigQuery')
 
 ################################################### SQL BigQuery #################################################
 
@@ -7,6 +7,11 @@ import numpy as np ; import pandas as pd ; from google.cloud import bigquery
 client = bigquery.Client.from_service_account_json(
 json_credentials_path='data_pipeline-bbc9aec8eae9.json', 
 project='data_pipeline')
+
+#Pour chaque visiteur on calcule la durée entre sa premiere visite et son premier achat 
+#s'il en a effectué et la durée entre sa premiere et sa derniere visite sinon
+#On indique également le device sur lequel il a effectué la transaction ou sa dernière visite sinon. 
+#On code 1 s'il a effectué une transaction 0 sinon. 
 
 query = """
 WITH 
@@ -53,6 +58,7 @@ SELECT CONCAT("ID",fullvisitorid) AS fullvisitorid,
 
 query_results = client.query(query) ; query_results = query_results.result()
 
+#Résutats de la reqête
 fullvisitorid = [] ; time = [] ; device	= [] ; transaction = [] 
 
 for row in query_results: 
@@ -61,11 +67,7 @@ for row in query_results:
     transaction.append(row[2])
     device.append(row[3])
     
-BigQuery_table = {"fullvisitorid":fullvisitorid,
-                  "time":time,
-                  "transaction":transaction,
-                  "device":device} 
-
+BigQuery_table = {"fullvisitorid":fullvisitorid, "time":time, "transaction":transaction, "device":device} 
 BigQuery_table = pd.DataFrame(BigQuery_table)
 
 ############################################### Analyse de survie #################################################
@@ -138,6 +140,8 @@ d_data = survival_data.iloc[0:5,:]
 cph.predict_survival_function(d_data).plot()
 
 ################################## Retention ###############################################
+
+#On calcule maintenant la durée entre sa premiere visite et son dernier achat
 
 query = """
 WITH 
