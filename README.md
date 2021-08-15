@@ -35,7 +35,7 @@ Dans un contexte ux on peut symboliser le decès par le fait d'effectuer une con
 
 ![KMF](https://user-images.githubusercontent.com/83826055/129444429-fcef0f33-b30f-4c5c-9b22-af75347ed59e.png)
 
-On voit ici la survie globale, indépendament des versions du site, qui signifie ici la probabilité de n'avoir effectué aucun achat x jours après sa première viste (99% le premier 0 jour, 60% apres 1 ans). Mais l'intérêt de l'analyse est bien de segmenter les individus afin de voir dans quelle situation la survie est la meilleure ou la moins bonne suillant le contexte de l'analyse.
+On voit ici la survie globale, indépendament des versions du site, qui signifie ici la probabilité de n'avoir effectué aucun achat x jours après sa première viste (99% le premier 0 jour, 60% apres 1 ans (le site n'est pas très efficace)). Mais l'intérêt de l'analyse est bien de segmenter les individus afin de voir dans quelle situation la survie est la meilleure ou la moins bonne suillant le contexte de l'analyse.
 
 ![KMF_Device](https://user-images.githubusercontent.com/83826055/129444431-0271e2aa-c5cc-4988-9497-2b6b61337bb1.png)
 
@@ -43,7 +43,7 @@ On regarde maintenant la survie en fonction du device et on constate que la surv
 
 ![KMF_2](https://user-images.githubusercontent.com/83826055/129450587-cf45114a-ea53-49d4-b7ee-a1bb04a8b7f3.png)
 
-Egalement s'il on souhaite maintenant non plus analyser la rapidité d'une conversion ma la durée de retention, on ne calcule plus la durée entre la première visite et le premier achat mais avec le dernier. On contate maintenant que la survie en terme de retention est moins bonne qu'en terme de conversion, la probabilité qu'un individu continue d'acheter sur le site un ans après sa première visite est de 50%
+Egalement s'il on souhaite maintenant non plus analyser la rapidité d'une conversion ma la durée de retention, on ne calcule plus la durée entre la première visite et le premier achat mais avec le dernier. On voit que l'analyse survie en terme de retention vient coroborer de l'ineficacité du site en terme de conversion. La probabilité qu'un individu continue d'acheter sur le site un ans après sa première visite est de 50%.
 
 ![KMF_Device_2](https://user-images.githubusercontent.com/83826055/129450589-e52c90a2-8391-4d86-9827-43318689c2ae.png)
 
