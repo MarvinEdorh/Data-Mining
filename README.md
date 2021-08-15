@@ -33,7 +33,7 @@ Dans un contexte ux on peut symboliser le decès par le fait d'effectuer une con
 
 ![KMF](https://user-images.githubusercontent.com/83826055/129444429-fcef0f33-b30f-4c5c-9b22-af75347ed59e.png)
 
-On voit ici la survie globale du site indépendament des versions qui signifie ici la probabilité de n'avoir effectuer aucun achat x jours après sa première viste (0 % après 1 jour, 60% apres 1 ans)
+On voit ici la survie globale du site indépendament des versions qui signifie ici la probabilité de n'avoir effectuer aucun achat x jours après sa première viste (0% après 1 jour, 60% apres 1 ans). Mais l'interet de l'analyse est bien de segmenter les individus afin de voir dans quelle situation la survie est la meilleure ou la moins bonne suillant le contexte de l'analyse.
 
 ![KMF_Device](https://user-images.githubusercontent.com/83826055/129444431-0271e2aa-c5cc-4988-9497-2b6b61337bb1.png)
 
