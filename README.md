@@ -27,6 +27,7 @@ L'inconvenient du modele K-Means est qu'on ne sait pas a priori quel est le nomb
 Le nombre optimal de clusters qu'il faut choisir afin que la population soit découpée de la meilleure des manières est celui du point des abscisses où la courbe marque une cassure et devient linéaire. On voit ici que la meilleure des manieres de segmenter nos acheteurs est de les séparer en 3 groupes. On voit que ce qui caracterise le plus ces segments sont le niveau de CA. On renvoie ainsi ces résultats vers Google Cloud pour une analyse plus en détail de ce qui différencie les clusters constitués sur outils BI : https://datastudio.google.com/s/hRcohz4T4DI
 
 # Kaplan Meier Survival
+Lorsqu'on effectue un A/B testing on parfois etre amenner à analyser la performance du site en terme de durée. Quelle version permert d'effectuer une conversion le plus rapidement ? Pour cela il nécéssaire d'effectuer une analyse de servie de Kaplan Meier. Souvent utilisée en medecine et en finance cette analyse donne la probabilité qu'un evenement à de se produire (le décès) à  un instant t.
 
 ![KMF](https://user-images.githubusercontent.com/83826055/129444429-fcef0f33-b30f-4c5c-9b22-af75347ed59e.png)
 
