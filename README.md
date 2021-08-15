@@ -37,6 +37,8 @@ On voit ici la survie globale du site indépendament des versions qui signifie i
 
 ![KMF_Device](https://user-images.githubusercontent.com/83826055/129444431-0271e2aa-c5cc-4988-9497-2b6b61337bb1.png)
 
+On regarde maintenant la survie en fonction du device et on constate que la survie la moins bonne est celle de la version du site sur desktop, ce qui signifie que l'on y décède plus rapidement. Dans un contexte de santé cela sera négatif mais ici dans notre contexte e-commerce cela signifie en fait que la version du site sur desktop est la plus performante en terme de durée pour géner des conversions. La probailité de n'avoir effectuer aucun achat 150 jouaprès 
+
 ![KMF_2](https://user-images.githubusercontent.com/83826055/129450587-cf45114a-ea53-49d4-b7ee-a1bb04a8b7f3.png)
 
 ![KMF_Device_2](https://user-images.githubusercontent.com/83826055/129450589-e52c90a2-8391-4d86-9827-43318689c2ae.png)
