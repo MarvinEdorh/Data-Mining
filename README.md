@@ -16,6 +16,7 @@ Si à la suite du test du chi-2 on conclut à un lien significatif entre les 2 v
 
 
 # K-Means Clustering
+Demo : https://github.com/MarvinEdorh/Data-Mining/blob/main/Clustering%20K-Means.py
 En markerketing digital il très important de bien connaitre ses consomateurs et de bien les segmenter afin de pouvoir diriger des actions ciblées. Le modele de machine learning de clustering k-means permert justement de segment une population de manière ce que les groupes constitués soient à la fois en intra le plus homogènes possible et et en extra differents les un des autres selon un algorithme ittératif.
 
 #On ne sait pas a priori quel est le nombre optimal de clusters pour que le population soit separer de maniere 
