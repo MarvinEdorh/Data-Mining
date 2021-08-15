@@ -43,7 +43,7 @@ On regarde maintenant la survie en fonction du device et on constate que la surv
 
 ![KMF_2](https://user-images.githubusercontent.com/83826055/129450587-cf45114a-ea53-49d4-b7ee-a1bb04a8b7f3.png)
 
-Egalement s'il on souhaite maintenant non plus analyser la rapidité d'une conversion ma la durée de retention, on ne calcule plus la durée entre la première visite et le premier achat mais avec le dernier. On voit que l'analyse survie en terme de retention vient coroborer de l'ineficacité du site en terme de conversion. La probabilité qu'un individu continue d'acheter sur le site un ans après sa première visite est de 48%.
+Également si l'on souhaite maintenant non plus analyser la rapidité d'une conversion mais la durée de retention, on ne calcule plus la durée entre la première visite et le premier achat mais avec le dernier. On voit que l'analyse survie en terme de retention vient coroborer de l'inefficacité du site en terme de conversion. La probabilité qu'un individu continue d'acheter sur le site un ans après sa première visite est de 48%.
 
 ![KMF_Device_2](https://user-images.githubusercontent.com/83826055/129450589-e52c90a2-8391-4d86-9827-43318689c2ae.png)
 
