@@ -18,15 +18,15 @@ Si à la suite du test du chi-2 on conclut à un lien significatif entre les 2 v
 # K-Means Clustering
 Demo : https://github.com/MarvinEdorh/Data-Mining/blob/main/Clustering%20K-Means.py
 
-En markerketing digital il est assez important de bien connaitre ses consomateurs, la facon dont ils se comportent afin de bien les segmenter et ainsi pouvoir diriger des actions ciblées. Le modele de machine learning de clustering k-means peut aider a effectuer affectuer une segmentation optimal car il permet justement de découper une population de manière ce que les groupes constitués soient à la fois en intra les plus homogènes possible et et en extra les plus differents les un des autres. 
-Dans un contexte e-commerce on va par exemple segmenter les transactions afin de mieux comprendre le compotertemnt des acheteurs sur le site. On va donc crées un jeu de données provennant des Google Analytics requêtées dans BigQuery indicant pour chaque achat le device et son os, la source de traffic et de campagne de l'acheteur, son pays, les produits et catégories produits achetés, le nombre de visites que l'acheteur a effectué sur les produits et catégories produits achetés, et enfin le CA.
+En markerketing digital il est assez important de bien connaitre ses consomateurs, la facon dont ils se comportent afin de bien les segmenter et ainsi pouvoir diriger des actions ciblées. Le modèle de machine learning de clustering k-means peut aider à effectuer une segmentation optimale car il permet justement de découper une population de manière ce que les groupes constitués soient à la fois en intra les plus homogènes possible et et en extra les plus differents les un des autres. Dans un contexte e-commerce on peut par exemple segmenter les transactions afin de mieux comprendre le compotertement des acheteurs sur le site. On va donc crées un jeu de données provennant des données Google Analytics requêtées dans BigQuery indicant pour chaque achat le device et son os, la source de traffic et de campagne de l'acheteur, son pays, les produits et catégories produits achetés, le nombre de visites que l'acheteur a effectué sur les produits et catégories produits achetés, et enfin le CA.
+
 L'inconvenient du modele K-Means est qu'on ne sait pas a priori quel est le nombre optimal de groupes (clusters) il faut choisir pour que le population soit separer de maniere à ce que les clusters constitués soient à la fois le plus homogenes possible et differents les un des autres. On utlise pour cela la courbe d'elbow en testant une décomposition de 1 à 10 groupes.
 
 ![Courbe d'elbow](https://user-images.githubusercontent.com/83826055/129334001-457b71dd-c30f-43de-897e-d2dab6f01a60.png)
 
-Le nombre optimal de clusters qu'il faut choisir afin que la population soit découpée de la meilleure des maniere est celui du point des abscisses où la courbe marque une cassure et devient linéaire. On voit ici que la meilleure des maniere de seglenter nos acheteurs est de les séparer en 3 groupes.
+Le nombre optimal de clusters qu'il faut choisir afin que la population soit découpée de la meilleure des manière est celui du point des abscisses où la courbe marque une cassure et devient linéaire. On voit ici que la meilleure des maniere de segmenter nos acheteurs est de les séparer en 3 groupes. On voit que ce qui caracterise le plus ces segments sont le niveau de CA. On renvoie ainsi ces résultats vers Google Cloud pour une analyse plus en détail de ce qui différencie les clusters constitués sur outils BI. 
 
-Clusters dataviz : https://datastudio.google.com/s/hRcohz4T4DI
+Dataviz : https://datastudio.google.com/s/hRcohz4T4DI
 
 # Kaplan Meier Survival
 
