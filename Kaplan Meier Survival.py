@@ -70,13 +70,15 @@ for row in query_results:
 BigQuery_table = {"fullvisitorid":fullvisitorid, "time":time, "transaction":transaction, "device":device} 
 BigQuery_table = pd.DataFrame(BigQuery_table)
 
-############################################### Analyse de survie #################################################
-
-col = list(BigQuery_table.columns); del col[0] 
-survival_data = pd.DataFrame(np.c_[BigQuery_table.iloc[:,1:4]], columns = col,
-                             index = BigQuery_table['fullvisitorid']) 
+###################################### Analyse de survie de Kaplan Meier #################################################
 
 from lifelines import KaplanMeierFitter ; import matplotlib.pyplot as plt
+
+#On importe le jeu de donnée de la table BigQuery
+col = list(BigQuery_table.columns); del col[0] 
+survival_data = pd.DataFrame(np.c_[BigQuery_table.iloc[:,1:4]], columns = col, index = BigQuery_table['fullvisitorid']) 
+
+#On crée le modèle
 kmf = KaplanMeierFitter() ; kmf.fit(survival_data['time'],survival_data['transaction'])
 
 event_table = kmf.event_table #table des évenements
@@ -84,58 +86,49 @@ kmf.predict(11) #prediction d'etre en vie à 11 jours
 survival_probability = kmf.survival_function_ #table des probabilités de survie
 
 #Courbe de la fonction de survie de Kaplan Meier
-kmf.plot()
-plt.xlabel("time in days")
-plt.ylabel("survival probability")
-plt.title("KMF")
+kmf.plot() ; plt.xlabel("time in days") ; plt.ylabel("survival probability") ; plt.title("KMF")
 
 #Courbe plus lisible
-plt.figure(figsize=(15,10)) ; kmf.plot()
-plt.xlabel('time in days') ; plt.ylabel('survival probability') ; plt.title("Survival Function")
-plt.ylim([0.45,1]) 
+plt.figure(figsize=(15,10)) ; kmf.plot() ; plt.xlabel('time in days') ; plt.ylabel('survival probability') 
+plt.title("Survival Function") ; plt.ylim([0.45,1]) 
 
 ########################################### test du log-rank ##########################################
 
-# Dividing data into groups :
+#On divise le jeu de données en fonction des segment
 desktop = survival_data.query("device == 'desktop'")
 mobile = survival_data.query("device == 'mobile'")
 tablet = survival_data.query("device == 'tablet'")
 
-# kmf_m for male data.
-kmf_desktop = KaplanMeierFitter() 
-kmf_mobile = KaplanMeierFitter() 
-kmf_tablet = KaplanMeierFitter() 
-
+#On crée les modèle
+kmf_desktop = KaplanMeierFitter()  ; kmf_mobile = KaplanMeierFitter()  ; kmf_tablet = KaplanMeierFitter() 
 kmf_desktop.fit(desktop['time'],desktop['transaction'])
 kmf_mobile.fit(mobile['time'],mobile['transaction'])
 kmf_tablet.fit(tablet['time'],tablet['transaction'])
 
-# Plot the survival_function data :
-plt.figure(figsize=(15,10)) ; kmf_desktop.plot(label='desktop')
-kmf_mobile.plot(label='mobile') ; kmf_tablet.plot(label='tablet')
-plt.xlabel("time in days") ; plt.ylabel("survival probability") 
-plt.title("Survival Functions") ; plt.ylim([0.45,1])  
+#Courbes de survie en fonction des segments
+plt.figure(figsize=(15,10)) ; plt.ylim([0.45,1]) 
+kmf_desktop.plot(label='desktop') ; kmf_mobile.plot(label='mobile') ; kmf_tablet.plot(label='tablet')
+plt.xlabel("time in days") ; plt.ylabel("survival probability") ; plt.title("Survival Functions")  
 
+
+#test du log-rank
 from lifelines.statistics import multivariate_logrank_test
-
-log_rank_test = multivariate_logrank_test(survival_data['time'], survival_data['device'],
+log_rank_test = multivariate_logrank_test(survival_data['time'], survival_data['device'], 
                                           survival_data['transaction'])
 
 log_rank_test.summary
 
 ################################## Modele de Cox ###############################################
 
-# Cox regression :
+#On recode les varibles categorielles en varible numériques
 survival_data["device"] = survival_data["device"].astype('category')
 survival_data["device"] = survival_data["device"].cat.codes
 
 from lifelines import CoxPHFitter
 
-cph = CoxPHFitter()
-cph.fit(survival_data,"time","transaction")
-cph.summary # -0.946602,  8.758189e-221 
+cph = CoxPHFitter() ; cph.fit(survival_data,"time","transaction") ; cph.summary # -0.946602,  8.758189e-221 
 
-# Plot the survival function :
+#Prédiction de la survie d'un individus
 d_data = survival_data.iloc[0:5,:]
 cph.predict_survival_function(d_data).plot()
 
@@ -186,47 +179,39 @@ SELECT fullvisitorid, DATE_DIFF(PARSE_DATE('%Y%m%d',date_event), PARSE_DATE('%Y%
 
 query_results = client.query(query) ; query_results = query_results.result()
 
+#Résutats de la reqête
 fullvisitorid = [] ; time = [] ; device	= [] ; transaction = [] 
-
 for row in query_results: 
     fullvisitorid.append(row[0]) 
     time.append(row[1])
     transaction.append(row[2])
     device.append(row[3])
     
-BigQuery_table_2 = {"fullvisitorid":fullvisitorid,
-                    "time":time,
-                    "transaction":transaction,
-                    "device":device} 
+BigQuery_table_2 = {"fullvisitorid":fullvisitorid, "time":time, "transaction":transaction, "device":device} 
 
-BigQuery_table_2 = pd.DataFrame(BigQuery_table_2) #BigQuery_table.to_csv('survie.csv')
+BigQuery_table_2 = pd.DataFrame(BigQuery_table_2)
 
-survival_data_2 = pd.DataFrame(np.c_[BigQuery_table_2.iloc[:,1:4]], columns = col,
-                               index = BigQuery_table_2['fullvisitorid']) 
+survival_data_2 = pd.DataFrame(np.c_[BigQuery_table_2.iloc[:,1:4]], columns = col, index = BigQuery_table_2['fullvisitorid']) 
 
-kmf_2 = KaplanMeierFitter()
-kmf_2.fit(survival_data_2['time'],survival_data_2['transaction'])
+#On crée le modèle
+kmf_2 = KaplanMeierFitter() ; kmf_2.fit(survival_data_2['time'],survival_data_2['transaction'])
 
-plt.figure(figsize=(15,10)) ; kmf.plot(label='conversion') ; kmf_2.plot(label='retention')
-plt.xlabel('time in days') ; plt.ylabel('survival probability') ; plt.title("Survival Function")
-plt.ylim([0,4,1]) 
+#Courbe de survie
+plt.figure(figsize=(15,10)) ; kmf.plot(label='conversion') ; kmf_2.plot(label='retention') ; plt.xlabel('time in days') ; 
+plt.ylabel('survival probability') ; plt.title("Survival Function") ; plt.ylim([0,35,1]) 
 
-# Dividing data into groups :
+#On divise le jeu de données en fonction des segment
 desktop_2 = survival_data_2.query("device == 'desktop'")
 mobile_2 = survival_data_2.query("device == 'mobile'")
 tablet_2 = survival_data_2.query("device == 'tablet'")
 
-# kmf_m for male data.
-kmf_desktop_2 = KaplanMeierFitter() 
-kmf_mobile_2 = KaplanMeierFitter() 
-kmf_tablet_2 = KaplanMeierFitter() 
-
+#On crée le modèle
+kmf_desktop_2 = KaplanMeierFitter() ; kmf_mobile_2 = KaplanMeierFitter() ; kmf_tablet_2 = KaplanMeierFitter() 
 kmf_desktop_2.fit(desktop_2['time'],desktop_2['transaction'])
 kmf_mobile_2.fit(mobile_2['time'],mobile_2['transaction'])
 kmf_tablet_2.fit(tablet_2['time'],tablet_2['transaction'])
 
-# Plot the survival_function data :
-plt.figure(figsize=(15,10)) ; kmf_desktop_2.plot(label='desktop')
-kmf_mobile_2.plot(label='mobile') ; kmf_tablet_2.plot(label='tablet')
-plt.xlabel("time in days") ; plt.ylabel("survival probability") 
-plt.title("Survival Functions") ; plt.ylim([0.3,1])  
+#Courbes de survie en fonction des segments
+plt.figure(figsize=(15,10)) ; kmf_desktop_2.plot(label='desktop') ; kmf_mobile_2.plot(label='mobile') 
+kmf_tablet_2.plot(label='tablet') ; plt.xlabel("time in days") ; plt.ylabel("survival probability") 
+plt.title("Survival Functions") ; plt.ylim([0.35,1])  
