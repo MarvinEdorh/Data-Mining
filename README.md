@@ -46,4 +46,4 @@ Egalement s'il on souhaite maintenant non plus analyser la rapidité des convers
 
 ![KMF_Device_2](https://user-images.githubusercontent.com/83826055/129450589-e52c90a2-8391-4d86-9827-43318689c2ae.png)
 
-Si on analyse maintenant la survie en fonction du device, on voit que la meilleure retention est la version sur mobile. La probabilité qu'un individu continue d'acheté un ans après sa premiere visite est de 95% sur mobile et de sur desktop 
+Si on analyse maintenant la survie en fonction du device, on voit que la meilleure retention est la version sur mobile. La probabilité qu'un individu continue d'acheté un ans après sa premiere visite est de 95% sur mobile et de 40% sur desktop. Ce resultat peut néanmoins comporter un biais car on voit que nos fonctions de conversions de retentions sont assez similaires, cela peut signifier en fait que la plus part des invidus n'ont en en fait realisé que un seul achat et que ceux qu'il l'ont fait sur mobile l'ont fait tardivement.
