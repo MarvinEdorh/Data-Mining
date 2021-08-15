@@ -45,3 +45,5 @@ On regarde maintenant la survie en fonction du device et on constate que la surv
 Egalement s'il on souhaite maintenant non plus analyser la rapidité des conversions ma la durée de retention, on selection plus la durée avec le premier mais le dernier. On maintenant que la survie en terme de retention est moins bonne, on voit ici que la probabilité qu'un individu continue d'acheter sur le site un ans après sa première visite est de 50%
 
 ![KMF_Device_2](https://user-images.githubusercontent.com/83826055/129450589-e52c90a2-8391-4d86-9827-43318689c2ae.png)
+
+Si on analyse maintenant la survie en fonction du device, on voit que la meilleure retention est la version sur mobile. La probabilité qu'un individu continue d'acheté un ans après sa premiere visite est de 95% sur mobile et de sur desktop 
