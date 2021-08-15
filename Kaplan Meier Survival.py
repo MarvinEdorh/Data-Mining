@@ -120,15 +120,25 @@ log_rank_test.summary
 #les différence de survie sont significative car la p-valeur est inferieure à 5%
 
 ##################################################### Modele de Cox ######################################################
-
-#On recode les varibles categorielles en varible numériques
-survival_data["device"] = survival_data["device"].astype('category')
-survival_data["device"] = survival_data["device"].cat.codes
-
 from lifelines import CoxPHFitter
 
-cph = CoxPHFitter() ; cph.fit(survival_data,"time","transaction") ; cph.summary # -0.946602,  8.758189e-221 
+#On recode les varibles categorielles en varible numériques
+survival_data = pd.DataFrame(np.c_[BigQuery_table.iloc[:,1:4]], columns = col, index = BigQuery_table['fullvisitorid']) 
+survival_data["device"] = survival_data.device.replace({"desktop":2,"mobile":1, "tablet":1})
+cph = CoxPHFitter() ; cph.fit(survival_data,"time","transaction") ; cox_reg = cph.summary ; cox_reg
+#3.128524 6.797120e-250
+#exp(coef) = 1 no effet
+#exp(coef) < reduction du risque
+#exp(coef) > augmente le risque
 
+survival_data = pd.DataFrame(np.c_[BigQuery_table.iloc[:,1:4]], columns = col, index = BigQuery_table['fullvisitorid']) 
+survival_data["device"] = survival_data.device.replace({"desktop":1,"mobile":2, "tablet":1})
+cph = CoxPHFitter() ; cph.fit(survival_data,"time","transaction") ; cox_reg = cph.summary ; cox_reg
+#0.316285   1.007424e-216
+survival_data = pd.DataFrame(np.c_[BigQuery_table.iloc[:,1:4]], columns = col, index = BigQuery_table['fullvisitorid']) 
+survival_data["device"] = survival_data.device.replace({"desktop":1,"mobile":1, "tablet":2})
+cph = CoxPHFitter() ; cph.fit(survival_data,"time","transaction") ; cox_reg = cph.summary ; cox_reg
+# 0.469092  2.149924e-21 
 #Prédiction de la survie d'un individus
 d_data = survival_data.iloc[0:5,:]
 cph.predict_survival_function(d_data).plot()
