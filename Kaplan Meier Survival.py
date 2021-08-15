@@ -1,6 +1,6 @@
 import os; os.chdir('C:/Users/marvin/Desktop/SQL BigQuery')
 
-################################################### SQL BigQuery ###########################################################
+################################################### SQL BigQuery ########################################################
 
 import numpy as np ; import pandas as pd ; from google.cloud import bigquery
 
@@ -70,7 +70,7 @@ for row in query_results:
 BigQuery_table = {"fullvisitorid":fullvisitorid, "time":time, "transaction":transaction, "device":device} 
 BigQuery_table = pd.DataFrame(BigQuery_table)
 
-########################################### Analyse de survie de Kaplan Meier ##############################################
+########################################### Analyse de survie de Kaplan Meier ###########################################
 
 from lifelines import KaplanMeierFitter ; import matplotlib.pyplot as plt
 
@@ -92,7 +92,7 @@ kmf.plot() ; plt.xlabel("time in days") ; plt.ylabel("survival probability") ; p
 plt.figure(figsize=(15,10)) ; kmf.plot() ; plt.xlabel('time in days') ; plt.ylabel('survival probability') 
 plt.title("Survival Function") ; plt.ylim([0.45,1]) 
 
-################################################## test du log-rank #########################################################
+################################################## test du log-rank ####################################################
 
 #On divise le jeu de données en fonction des segment
 desktop = survival_data.query("device == 'desktop'")
@@ -118,7 +118,7 @@ log_rank_test = multivariate_logrank_test(survival_data['time'], survival_data['
 
 log_rank_test.summary
 
-##################################################### Modele de Cox ##########################################################
+##################################################### Modele de Cox ######################################################
 
 #On recode les varibles categorielles en varible numériques
 survival_data["device"] = survival_data["device"].astype('category')
@@ -132,7 +132,7 @@ cph = CoxPHFitter() ; cph.fit(survival_data,"time","transaction") ; cph.summary 
 d_data = survival_data.iloc[0:5,:]
 cph.predict_survival_function(d_data).plot()
 
-###################################################### Retention #############################################################
+###################################################### Retention #########################################################
 
 #On calcule maintenant la durée entre sa premiere visite et son dernier achat
 
