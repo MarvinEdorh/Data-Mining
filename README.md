@@ -16,6 +16,12 @@ Si à la suite du test du chi-2 on conclut à un lien significatif entre les 2 v
 
 
 # K-Means Clustering
+En markerketing digital il très important de bien connaitre ses consomateurs et de bien les segmenter afin de pouvoir diriger des actions ciblées. Le modele de machine learning de clustering k-means permert justement de segment une population de manière ce que les groupes constitués soient à la fois en intra le plus homogènes possible et et en extra differents les un des autres selon un algorithme ittératif.
+
+#On ne sait pas a priori quel est le nombre optimal de clusters pour que le population soit separer de maniere 
+#à ce que les segments constituées soient à la fois le plus homogenes possible et differents les un des autres.
+#On utlise pour cela la courbe d'elbow en testant une décomposition de 1 à 10 groupes.
+
 Clusters dataviz : https://datastudio.google.com/s/hRcohz4T4DI
 
 ![Courbe d'elbow](https://user-images.githubusercontent.com/83826055/129334001-457b71dd-c30f-43de-897e-d2dab6f01a60.png)
