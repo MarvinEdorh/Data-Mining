@@ -86,11 +86,11 @@ kmf.predict(11) #prediction d'etre en vie à 11 jours
 survival_probability = kmf.survival_function_ #table des probabilités de survie
 
 #Courbe de la fonction de survie de Kaplan Meier
-kmf.plot() ; plt.xlabel("time in days") ; plt.ylabel("survival probability") ; plt.title("KMF")
+kmf.plot(); plt.xlabel("time in days"); plt.ylabel("survival probability"); plt.title("Kaplan Meier Survival Function")
 
 #Courbe plus lisible
 plt.figure(figsize=(15,10)) ; kmf.plot() ; plt.xlabel('time in days') ; plt.ylabel('survival probability') 
-plt.title("Survival Function") ; plt.ylim([0.45,1]) 
+plt.title("Kaplan Meier Survival Function") ; plt.ylim([0.45,1]) 
 
 ################################################## test du log-rank ####################################################
 
@@ -108,7 +108,7 @@ kmf_tablet.fit(tablet['time'],tablet['transaction'])
 #Courbes de survie en fonction des segments
 plt.figure(figsize=(15,10)) ; plt.ylim([0.45,1])
 kmf_desktop.plot(label='desktop') ; kmf_mobile.plot(label='mobile') ; kmf_tablet.plot(label='tablet')
-plt.xlabel("time in days") ; plt.ylabel("survival probability") ; plt.title("Survival Functions") 
+plt.xlabel("time in days") ; plt.ylabel("survival probability") ; plt.title("Kaplan Meier Survival Functions") 
 
 
 #test du log-rank
@@ -117,6 +117,7 @@ log_rank_test = multivariate_logrank_test(survival_data['time'], survival_data['
                                           survival_data['transaction'])
 
 log_rank_test.summary
+#les différence de survie sont significative car la p-valeur est inferieure à 5%
 
 ##################################################### Modele de Cox ######################################################
 
@@ -198,8 +199,8 @@ survival_data_2 = pd.DataFrame(np.c_[BigQuery_table_2.iloc[:,1:4]],
 kmf_2 = KaplanMeierFitter() ; kmf_2.fit(survival_data_2['time'],survival_data_2['transaction'])
 
 #Courbe de survie
-plt.figure(figsize=(15,10)) ; kmf.plot(label='conversion') ; kmf_2.plot(label='retention') 
-plt.xlabel('time in days') ; plt.ylabel('survival probability') ; plt.title("Survival Function") ; plt.ylim([0,35,1]) 
+plt.figure(figsize=(15,10)) ; plt.ylim([0,35,1]) ; kmf.plot(label='conversion') ; kmf_2.plot(label='retention') 
+plt.xlabel('time in days') ; plt.ylabel('survival probability') ; plt.title("Kaplan Meier Survival Functionsn") 
 
 #On divise le jeu de données en fonction des segment
 desktop_2 = survival_data_2.query("device == 'desktop'")
@@ -215,4 +216,4 @@ kmf_tablet_2.fit(tablet_2['time'],tablet_2['transaction'])
 #Courbes de survie en fonction des segments
 plt.figure(figsize=(15,10)) ; kmf_desktop_2.plot(label='desktop') ; kmf_mobile_2.plot(label='mobile') 
 kmf_tablet_2.plot(label='tablet') ; plt.xlabel("time in days") ; plt.ylabel("survival probability") 
-plt.title("Survival Functions") ; plt.ylim([0.35,1])  
+plt.title("Kaplan Meier Survival Functions") ; plt.ylim([0.35,1])  
