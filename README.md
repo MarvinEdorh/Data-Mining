@@ -39,11 +39,11 @@ On voit ici la survie globale, indépendament des versions du site, qui signifie
 
 ![KMF_Device](https://user-images.githubusercontent.com/83826055/129444431-0271e2aa-c5cc-4988-9497-2b6b61337bb1.png)
 
-On regarde maintenant la survie en fonction du device et on constate que la survie la moins bonne est celle de la version du site sur desktop, ce qui signifie que l'on y décède plus rapidement. Dans un contexte de santé cela sera négatif mais ici dans notre contexte e-commerce cela signifie en fait que la version du site sur desktop est la plus performante en terme de durée pour géner des conversions. La probailité de n'avoir effectuer aucun achat 200 jours après sa première visite est de 95% sur mobile et tablet et seulement de 75% sur desktop. Afin de savoir si ces résultats sont significatif on effectue le test statistique du log rank qui pose H0 et H1, et conclue à une significativité si la p-valeure calculée sous H0 est inferieure à 5%
+On regarde maintenant la survie en fonction du device et on constate que la survie la moins bonne est celle de la version du site sur desktop, ce qui signifie que l'on y décède plus rapidement. Dans un contexte de santé cela sera négatif mais ici dans notre contexte e-commerce cela signifie en fait que la version du site sur desktop est la plus performante en terme de durée pour géner une conversion. La probailité de n'avoir effectuer aucun achat 200 jours après sa première visite est de 95% sur mobile et tablet et seulement de 75% sur desktop. Afin de savoir si ces résultats sont significatif on effectue le test statistique du log rank qui pose H0 et H1, et conclue à une significativité des résultats si la p-valeure calculée sous H0 est inferieure à 5%
 
 ![KMF_2](https://user-images.githubusercontent.com/83826055/129450587-cf45114a-ea53-49d4-b7ee-a1bb04a8b7f3.png)
 
-Egalement s'il on souhaite maintenant non plus analyser la rapidité des conversions ma la durée de retention, on selection plus la durée avec le premier mais le dernier. On maintenant que la survie en terme de retention est moins bonne, on voit ici que la probabilité qu'un individu continue d'acheter sur le site un ans après sa première visite est de 50%
+Egalement s'il on souhaite maintenant non plus analyser la rapidité d'une conversion ma la durée de retention, on ne calcule plus la durée entre la première visite et le premier achat mais avec le dernier. On contate maintenant que la survie en terme de retention est moins bonne qu'en terme de conversion, la probabilité qu'un individu continue d'acheter sur le site un ans après sa première visite est de 50%
 
 ![KMF_Device_2](https://user-images.githubusercontent.com/83826055/129450589-e52c90a2-8391-4d86-9827-43318689c2ae.png)
 
