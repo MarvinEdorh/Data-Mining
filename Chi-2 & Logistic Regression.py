@@ -20,7 +20,7 @@ pd.DataFrame({'Stats':['test statistic','p-value','df'], 'Value' : khi_2[:][0:3]
 # le test n'est pas significatif car la p-valeur est superieure à 0,05
 # On ne peut donc pas dire que le fait d'effectuer une conversion est lié au type de pages vues
 
-#################################### Régression Logistique Binomial #################################################
+#################################### Régression Logistique Binomiale #################################################
 #On modélise le fait d'effectuer une conversion en fonction du type de page vue 
 #par rapport au profil de réference (ici le profil de reference est d'avoir vu la page orginale), 
 #Python prend comme profil de reference la premiere modalité dans l'ordre alphabétique de chaque variable explicative
