@@ -1,4 +1,4 @@
-# Correlation & Anova  
+# Correlation & Anova
 Demo : https://github.com/MarvinEdorh/Data-Mining/blob/main/Correlation%20%26%20Anova.py
 
 Lorsque l'on effectue une analyse en ux analytics et que l'on souhaite savoir si des variables ont lien les unes avec les autres, plusieurs tests statistiques peuvent permettent d'analyser cette question. Le test de corrélation est un test statistique qui permet de savoir quel est le degré relation linéaire entre 2 variables numériques. Il calcule un coefficient de corrélation pouvant aller de -1 à 1. Plus ce coefficient est proche de 1 en valeur absolue plus il a une forte relation de proportionnalité (positif ou négatif) entre ces 2 variables et donc cela signifie que ces variables sont liées entre elles. Plus ce coefficient est proche de 0 moins ces variables sont liées entre elles.
