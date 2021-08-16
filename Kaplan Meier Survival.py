@@ -120,7 +120,7 @@ log_rank_test.summary
 #les différence de survie sont significative car la p-valeur est inferieure à 5%
 
 ##################################################### Modele de Cox ######################################################
-#On calucule l'impact des différente modalité sur le risque absolu de décès
+#On calucule l'impact des différentes modalités sur le risque absolu de décès (effectuer une transaction)
 from lifelines import CoxPHFitter
 
 #On recode en 2 la modalité que l'on souhaite analyser et 1 les autres
@@ -132,19 +132,19 @@ cph = CoxPHFitter() ; cph.fit(survival_data,"time","transaction") ; cox_reg = cp
 #Si exp(coef) = 1 il n'y a pas d'effet sur le risque absolue de decéder
 #Si exp(coef) < 1 avoir cette modalité réduit le risque de décéder
 #exp(coef) > 1 augmente le risque de le risque de décéder
-#Ici etre sur la version sur desktop multiplie le risque de décéder par 3.128524 6 soit une augmentation de 213%
+#Ici être sur la version sur desktop multiplie le risque de décéder par 3.128524 6 soit une augmentation de 213%
 
 survival_data = pd.DataFrame(np.c_[BigQuery_table.iloc[:,1:4]], columns = col, index = BigQuery_table['fullvisitorid']) 
 survival_data["device"] = survival_data.device.replace({"desktop":1,"mobile":2, "tablet":1})
 cph = CoxPHFitter() ; cph.fit(survival_data,"time","transaction") ; cox_reg = cph.summary ; cox_reg
 #le rélultat est significatif car la p-valeure est inferieure à 5%
-#Ici etre sur la version sur mobile multiplie le risque de décéder par 0.316285 6 soit une réduction de 68%   
+#Ici être sur la version sur mobile multiplie le risque de décéder par 0.316285 6 soit une réduction de 68%   
 
 survival_data = pd.DataFrame(np.c_[BigQuery_table.iloc[:,1:4]], columns = col, index = BigQuery_table['fullvisitorid']) 
 survival_data["device"] = survival_data.device.replace({"desktop":1,"mobile":1, "tablet":2})
 cph = CoxPHFitter() ; cph.fit(survival_data,"time","transaction") ; cox_reg = cph.summary ; cox_reg
 #le rélultat est significatif car la p-valeure est inferieure à 5%
-##Ici etre sur la version sur tablet multiplie le risque de décéder par 0.469092 6 soit une réduction de 53%   
+##Ici être sur la version sur tablet multiplie le risque de décéder par 0.469092 6 soit une réduction de 53%   
 
 #Prédiction de la survie d'un individus
 d_data = survival_data.iloc[0:5,:]
