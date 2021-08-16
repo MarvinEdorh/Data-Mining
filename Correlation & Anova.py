@@ -2,7 +2,7 @@
 
 import os; os.chdir('C:/Users/marvin/Desktop/Python') ; import pandas as pd
 
-################################################### Correlation ##################################################### 
+#################################################### Correlation #################################################### 
 pays = pd.read_csv('pays.csv', sep=",")
 
 #DataFrame de la matrice de correlation de toutes les variables numeriques
@@ -13,7 +13,7 @@ correl  = pays.corr(method='pearson')
 # affichage de la matrice de correlation
 import seaborn as sn ; sn.heatmap(correl, annot=True) 
 
-################################################### Anova ########################################################### 
+###################################################### Anova ######################################################### 
 transactions = pd.read_csv('transactions.csv', sep=",")
 
 device_avg = pd.DataFrame(transactions.groupby('deviceCategory').mean()) 
