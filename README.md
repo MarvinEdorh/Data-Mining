@@ -22,6 +22,8 @@ L'inconvénient du modelé K-Means est qu'on ne sait pas a priori quel est le no
 ![Courbe d'elbow](https://user-images.githubusercontent.com/83826055/129334001-457b71dd-c30f-43de-897e-d2dab6f01a60.png)
 
 Le nombre optimal de clusters qu'il faut choisir afin que la population soit découpée de la meilleure des manières est celui du point des abscisses où la courbe marque une cassure et devient linéaire. On voit ici que la meilleure des manières de segmenter nos acheteurs est de les séparer en 3 groupes. On vera que ce qui caractérise le plus les clusters constitués sont le niveau de CA par transaction. On renvoie ainsi ces résultats vers Google Cloud pour une analyse plus en détail de ce qui différencie ces différents clusters sur un outils BI (https://datastudio.google.com/s/hRcohz4T4DI). On constate cependant que plus que 90% de l'effectif total se retrouve dans le même cluster, on pourrait donc affiner ces résultats en choisissant un nombre plus important de segments car la courbe montre également une cassure à 6 clusters constitués ou alors en effectuant un second clustering sur les individus du cluster qui en regroupe le plus.
+
+![elbow 2](https://user-images.githubusercontent.com/83826055/129954000-e17baa4b-3bc7-4c65-ab30-267beff5465a.png)
 # Kaplan Meier Survival
 Demo : https://github.com/MarvinEdorh/Data-Mining/blob/main/Kaplan%20Meier%20Survival.py
 
