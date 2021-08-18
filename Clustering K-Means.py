@@ -123,19 +123,75 @@ for k in K :
 plt.figure(figsize=(14,8)) ; plt.plot(K, distortions, 'bx-') ; plt.xlabel('k') ; plt.ylabel('Distortion')
 plt.title('The Elbow Method showing the optimal k') ; plt.show()
 
-#la courbe d'elbow montre qu'il est optimal de constituer 3 clusters, le point de cassure de la courbe
-kmeanModel = KMeans(n_clusters= 3) ; kmeanModel.fit(clustering)
+#la courbe d'elbow montre qu'il est optimal de constituer 3 ou 6 clusters, le point de cassure de la courbe
 
+#On crée un modele à 3 cluster
+kmeanModel = KMeans(n_clusters= 3) ; kmeanModel.fit(clustering)
 #On assigne chaque transaction à son cluster
-BigQuery_table['cluster'] = kmeanModel.predict(clustering)
+BigQuery_table['cluster_3'] = kmeanModel.predict(clustering)
+
+#On crée un modele à 6 cluster
+kmeanModel = KMeans(n_clusters= 6) ; kmeanModel.fit(clustering)
+#On assigne chaque pays à son cluster
+BigQuery_table['cluster_6'] = kmeanModel.predict(clustering)
 
 #Caracterisation des clusters
-BigQuery_table.groupby('cluster').count()[['ID_Transaction']] #effectif des clusters
-clusters_means = pd.DataFrame(BigQuery_table.groupby('cluster').mean()) ;clusters_means #moyennes varibles numériques
+BigQuery_table.groupby('cluster_3').count()[['ID_Transaction']] #effectif des clusters
+BigQuery_table.groupby('cluster_6').count()[['ID_Transaction']]
+clusters_means = pd.DataFrame(BigQuery_table.groupby('cluster_3').mean()) ; clusters_means #moyennes varibles numériques
+clusters_means = pd.DataFrame(BigQuery_table.groupby('cluster_6').mean()) ; clusters_means
 
-#Export des clusters vers Google Cloud Platform BigQuery Storage afin de mieux les visualiser sur Google Data Studio
+#Export des résultats vers Google Cloud Platform BigQuery Storage 
+#afin de mieux les visualiser sur des outils BI de Data Visualisation comme Tableau ou Data Studio
 from pandas.io import gbq
-BigQuery_table.to_gbq(destination_table='test.clustering', project_id='data_pipeline', if_exists='replace')
+BigQuery_table.to_gbq(destination_table='test.clustering', project_id='mrvtestproject45', if_exists='replace')
+#copier coller le code d'autorisation dans la console 
+
+#dataviz : https://datastudio.google.com/reporting/70144ced-e19d-4010-9d93-721df23ea257/page/NJrXC
+
+################################################### Clustering_2 #################################################
+
+#On applique le modele K-Means sur des variables numeriqes 
+
+BigQuery_table_2 = BigQuery_table.query("cluster_3 == 0")
+clustering_2 = pd.DataFrame(np.c_[BigQuery_table_2.iloc[:,1:11]], columns = col ) 
+clustering_2["deviceCategory"] = clustering_2["deviceCategory"].astype('category')
+clustering_2["deviceCategory"] = clustering_2["deviceCategory"].cat.codes
+clustering_2["operatingSystem"] = clustering_2["operatingSystem"].astype('category')
+clustering_2["operatingSystem"] = clustering_2["operatingSystem"].cat.codes
+clustering_2["campaign"] = clustering_2["campaign"].astype('category')
+clustering_2["campaign"] = clustering_2["campaign"].cat.codes
+clustering_2["medium"] = clustering_2["medium"].astype('category')
+clustering_2["medium"] = clustering_2["medium"].cat.codes
+clustering_2["country"] = clustering_2["country"].astype('category')
+clustering_2["country"] = clustering_2["country"].cat.codes
+clustering_2["Product"] = clustering_2["Product"].astype('category')
+clustering_2["Product"] = clustering_2["Product"].cat.codes
+clustering_2["Product_Category"] = clustering_2["Product_Category"].astype('category')
+clustering_2["Product_Category"] = clustering_2["Product_Category"].cat.codes
+
+#Courbe d'elbow
+distortions = [] ; K = range(1,10)
+
+for k in K :
+    kmeanModel = KMeans(n_clusters=k)
+    kmeanModel.fit(clustering_2)
+    distortions.append(kmeanModel.inertia_)
+
+plt.figure(figsize=(14,8)) ; plt.plot(K, distortions, 'bx-') ; plt.xlabel('number of clusters') ; plt.ylabel('Distortion')
+plt.title('The Elbow Method showing the optimal number of clusters') ; plt.show()
+
+#la courbe d'elbow montre qu'il est optimal de constituer 4 ou 6 groupes, le point de cassure de la courbe
+
+kmeanModel = KMeans(n_clusters= 4) ; kmeanModel.fit(clustering_2)
+BigQuery_table_2['cluster_4'] = kmeanModel.predict(clustering_2)
+
+kmeanModel = KMeans(n_clusters= 6) ; kmeanModel.fit(clustering_2)
+BigQuery_table_2['cluster_6'] = kmeanModel.predict(clustering_2)
+
+#Export des résultats vers Google Cloud Platform BigQuery Storage 
+from pandas.io import gbq
+BigQuery_table_2.to_gbq(destination_table='test.clustering_2', project_id='mrvtestproject45', if_exists='replace')
 
 #dataviz : https://datastudio.google.com/reporting/70144ced-e19d-4010-9d93-721df23ea257/page/NJrXC
 
