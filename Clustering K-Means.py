@@ -86,7 +86,7 @@ BigQuery_table = {"ID_Transaction":ID_Transaction,
 
 BigQuery_table = pd.DataFrame(BigQuery_table) #BigQuery_table.to_csv('clustering.csv')
 
-################################################### Clustering #################################################
+#################################################### Clustering #################################################
 
 #On applique le modele K-Means sur des variables numeriqes, on recode les varibles categorielles par un label encoding 
 
@@ -149,7 +149,7 @@ BigQuery_table.to_gbq(destination_table='test.clustering', project_id='mrvtestpr
 
 #dataviz : https://datastudio.google.com/reporting/70144ced-e19d-4010-9d93-721df23ea257/page/NJrXC
 
-################################################### Clustering_2 #################################################
+##################################################### Clustering_2 #################################################
 
 #On applique le modele K-Means sur des variables numeriqes 
 BigQuery_table_2 = BigQuery_table.query("cluster_3 == 0")
