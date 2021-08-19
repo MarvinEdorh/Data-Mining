@@ -21,9 +21,11 @@ L'inconvénient du modelé K-Means est qu'on ne sait pas a priori quel est le no
 
 ![Figure 2021-08-19 001319](https://user-images.githubusercontent.com/83826055/129981440-cd3f6a6a-eacd-4149-bfca-b7d5c8a1d5f3.png)
 
-Le nombre optimal de clusters qu'il faut choisir afin que la population soit découpée de la meilleure des manières est celui du point des abscisses où la courbe marque une cassure et devient linéaire. On voit ici que la meilleure des manières de segmenter nos acheteurs est de les séparer en 3 groupes. On vera que ce qui caractérise le plus les clusters constitués sont le niveau de CA par transaction. On renvoie ainsi ces résultats vers Google Cloud pour une analyse plus en détail de ce qui différencie ces différents clusters sur un outils BI (https://datastudio.google.com/s/hRcohz4T4DI). On constate cependant que plus que 90% de l'effectif total se retrouve dans le même cluster, on pourrait donc affiner ces résultats en choisissant un nombre plus important de segments car la courbe montre également une cassure à 6 clusters constitués ou alors en effectuant un second clustering sur les individus du cluster qui en regroupe le plus.
+Le nombre optimal de clusters qu'il faut choisir afin que la population soit découpée de la meilleure des manières est celui du point des abscisses où la courbe marque une cassure et devient linéaire. On voit ici que la meilleure des manières de segmenter nos acheteurs est de les séparer en 3 groupes. On vera que ce qui caractérise le plus les clusters constitués sont le niveau de CA par transaction. On renvoie ainsi ces résultats vers Google Cloud pour une analyse plus en détail de ce qui différencie ces différents clusters sur un outils BI (https://datastudio.google.com/s/hRcohz4T4DI). Cependant plus que 90% de l'effectif total se retrouve dans le même cluster, on pourrait donc affiner ces résultats en choisissant un nombre plus important de segments car la courbe montre également une cassure à 5 clusters constitués ou alors en effectuant un second clustering sur les individus qui constituent ce cluster dont voici la courbe d'elbow.
 
 ![Figure 2021-08-19 001232](https://user-images.githubusercontent.com/83826055/129981505-15f491ed-2b53-4c83-82f3-97edd7642db8.png)
+
+On constate qu'il est maintenant optimal de segmenter les individus du cluster le plus important en 4 groupes.
 # Kaplan Meier Survival
 Demo : https://github.com/MarvinEdorh/Data-Mining/blob/main/Kaplan%20Meier%20Survival.py
 
