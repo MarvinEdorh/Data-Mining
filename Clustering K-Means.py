@@ -6,7 +6,7 @@
 
 import os; os.chdir('C:/Users/marvin/Desktop/Python')
 
-################################################### SQL BigQuery #################################################
+################################################### SQL BigQuery ###################################################
 
 import numpy as np ; import pandas as pd ; from google.cloud import bigquery
 
@@ -87,7 +87,7 @@ BigQuery_table = {"ID_Transaction":ID_Transaction,
 BigQuery_table = pd.DataFrame(BigQuery_table) #BigQuery_table.to_csv('clustering.csv')
 
 #On applique le modele K-Means sur des variables numeriqes, on transforme les variables categorielles en effectant une ACM
-####################################################### ACM #######################################################
+####################################################### ACM ##########################################################
 
 col = list(BigQuery_table.columns); del col[0]; del col[7]; del col[7]; del col[7]
 data_acm = pd.DataFrame(np.c_[BigQuery_table.iloc[:,1:8]], columns = col )    
@@ -99,7 +99,7 @@ ev = pd.DataFrame(acm.eigenvalues_) ##on selectionne les axe dont la valeure pro
 #Coordonnées des individes
 coord_acm = acm.transform(data_acm) ; coord_acm_ind = pd.DataFrame(coord_acm)
 
-####################################################### ACP ########################################################
+####################################################### ACP ##########################################################
 #si les varibles numérique sont corrélés on peut egalement les transformées en effectuant une ACP
 col = list(BigQuery_table.columns)
 del col[0] ; del col[0] ; del col[0] ; del col[0] ; del col[0] ; del col[0] ; del col[0] ; del col[0]
@@ -125,7 +125,7 @@ eigval = pd.DataFrame({'eigval':eigval.tolist(),'prct_explained':prct_explained.
 #coordonnées des individus
 coord_acp_ind = pd.DataFrame(coord_acp)
 
-#################################################### Clustering #######################################################
+#################################################### Clustering ########################################################
 
 clustering = pd.DataFrame(np.c_[coord_acm_ind.iloc[:,0:96],BigQuery_table.iloc[:,8:11]])
 
