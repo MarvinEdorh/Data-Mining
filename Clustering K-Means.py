@@ -86,9 +86,10 @@ BigQuery_table = {"ID_Transaction":ID_Transaction,
 
 BigQuery_table = pd.DataFrame(BigQuery_table) #BigQuery_table.to_csv('clustering.csv')
 
-#On applique le modele K-Means sur des variables numeriqes, on transforme les variables categorielles en effectant une ACM
-####################################################### ACM ##########################################################
+#On applique le modele K-Means sur des variables numeriqes
 
+####################################################### ACM ##########################################################
+#On transforme les variables categorielles en effectant une ACM
 col = list(BigQuery_table.columns); del col[0]; del col[7]; del col[7]; del col[7]
 data_acm = pd.DataFrame(np.c_[BigQuery_table.iloc[:,1:8]], columns = col )    
                        
@@ -96,7 +97,7 @@ import prince ; acm = prince.MCA(n_components=100) ; acm.fit(data_acm) #on crée
 
 ev = pd.DataFrame(acm.eigenvalues_) ##on selectionne les axe dont la valeure propre est superieure à 1/Nb variables
 
-#Coordonnées des individes
+#Coordonnées des individus
 coord_acm = acm.transform(data_acm) ; coord_acm_ind = pd.DataFrame(coord_acm)
 
 ####################################################### ACP ##########################################################
