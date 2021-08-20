@@ -86,9 +86,9 @@ BigQuery_table = {"ID_Transaction":ID_Transaction,
 
 BigQuery_table = pd.DataFrame(BigQuery_table) #BigQuery_table.to_csv('clustering.csv')
 
-#On applique le modele K-Means sur des variables numeriqes, on recode les varibles categorielles par un label encoding 
-
+#On applique le modele K-Means sur des variables numeriqes, on transforme les variables categorielles en effectant une ACM
 ####################################################### ACM #######################################################
+
 col = list(BigQuery_table.columns); del col[0]; del col[7]; del col[7]; del col[7]
 data_acm = pd.DataFrame(np.c_[BigQuery_table.iloc[:,1:8]], columns = col )    
                        
@@ -100,7 +100,7 @@ ev = pd.DataFrame(acm.eigenvalues_) #Valeurs propres
 coord_acm = acm.transform(data_acm) ; coord_acm_ind = pd.DataFrame(coord_acm)
 
 ####################################################### ACP ########################################################
-
+#si les varibles numérique sont corrélés on peut egalement les transformées en effectuant une ACP
 col = list(BigQuery_table.columns)
 del col[0] ; del col[0] ; del col[0] ; del col[0] ; del col[0] ; del col[0] ; del col[0] ; del col[0]
 data_acp = pd.DataFrame(np.c_[BigQuery_table.iloc[:,8:11]], columns = col) 
@@ -127,24 +127,6 @@ coord_acp_ind = pd.DataFrame(coord_acp)
 ################################################### Clustering #######################################################
 
 clustering = pd.DataFrame(np.c_[coord_acm_ind.iloc[:,0:96],BigQuery_table.iloc[:,8:11]])
-clustering = pd.DataFrame(np.c_[coord_acm_ind.iloc[:,0:96],coord_acp_ind.iloc[:,0:2]])
-
-col = list(BigQuery_table.columns); del col[0]
-clustering  = pd.DataFrame(np.c_[BigQuery_table.iloc[:,1:11]], columns = col ) 
-clustering["deviceCategory"] = clustering["deviceCategory"].astype('category')
-clustering["deviceCategory"] = clustering["deviceCategory"].cat.codes
-clustering["operatingSystem"] = clustering["operatingSystem"].astype('category')
-clustering["operatingSystem"] = clustering["operatingSystem"].cat.codes
-clustering["campaign"] = clustering["campaign"].astype('category')
-clustering["campaign"] = clustering["campaign"].cat.codes
-clustering["medium"] = clustering["medium"].astype('category')
-clustering["medium"] = clustering["medium"].cat.codes
-clustering["country"] = clustering["country"].astype('category')
-clustering["country"] = clustering["country"].cat.codes
-clustering["Product"] = clustering["Product"].astype('category')
-clustering["Product"] = clustering["Product"].cat.codes
-clustering["Product_Category"] = clustering["Product_Category"].astype('category')
-clustering["Product_Category"] = clustering["Product_Category"].cat.codes
 
 #On ne sait pas a priori quel est le nombre optimal de clusters pour que le population soit separer de maniere 
 #à ce que les segments constituées soient à la fois le plus homogenes possible et differents les un des autres.
@@ -162,21 +144,21 @@ for k in K :
 plt.figure(figsize=(14,8)) ; plt.plot(K, distortions, 'bx-') ; plt.xlabel('number of clusters')
 plt.ylabel('Distortion') ; plt.title('The Elbow Method showing the optimal number of clusters') 
 
-#la courbe d'elbow montre qu'il est optimal de constituer 3 ou 6 clusters, les points de cassure de la courbe
+#la courbe d'elbow montre qu'il est optimal de constituer 3 ou 4 clusters, les points de cassure de la courbe
 
 #On crée un modele à 3 cluster
 kmeanModel = KMeans(init="random", n_clusters=3, max_iter=500) ; kmeanModel.fit(clustering)
 #On assigne chaque transaction à son cluster
 BigQuery_table['cluster_3'] = kmeanModel.predict(clustering)
 
-#On crée un modele à 6 cluster
-kmeanModel = KMeans(init="random", n_clusters=6, max_iter=500) ; kmeanModel.fit(clustering)
+#On crée un modele à 4 cluster
+kmeanModel = KMeans(init="random", n_clusters=4, max_iter=500) ; kmeanModel.fit(clustering)
 #On assigne chaque pays à son cluster
-BigQuery_table['cluster_6'] = kmeanModel.predict(clustering)
+BigQuery_table['cluster_4'] = kmeanModel.predict(clustering)
 
 #Caracterisation des clusters
 BigQuery_table.groupby('cluster_3').count()[['ID_Transaction']] #effectif des clusters
-BigQuery_table.groupby('cluster_6').count()[['ID_Transaction']]
+BigQuery_table.groupby('cluster_4').count()[['ID_Transaction']]
 clusters_means = pd.DataFrame(BigQuery_table.groupby('cluster_3').mean()) ; clusters_means #moyennes varibles numériques
 clusters_means = pd.DataFrame(BigQuery_table.groupby('cluster_6').mean()) ; clusters_means
 
@@ -185,47 +167,6 @@ clusters_means = pd.DataFrame(BigQuery_table.groupby('cluster_6').mean()) ; clus
 from pandas.io import gbq
 BigQuery_table.to_gbq(destination_table='test.clustering', project_id='mrvtestproject45', if_exists='replace')
 #copier coller le code d'autorisation dans la console 
-
-#dataviz : https://datastudio.google.com/reporting/70144ced-e19d-4010-9d93-721df23ea257/page/NJrXC
-
-#################################################### Clustering_2 #################################################
-
-#On applique le modele K-Means sur des variables numeriqes 
-BigQuery_table_2 = BigQuery_table.query("cluster_3 == 0")
-clustering_2 = pd.DataFrame(np.c_[BigQuery_table_2.iloc[:,1:11]], columns = col ) 
-clustering_2["deviceCategory"] = clustering_2["deviceCategory"].astype('category')
-clustering_2["deviceCategory"] = clustering_2["deviceCategory"].cat.codes
-clustering_2["operatingSystem"] = clustering_2["operatingSystem"].astype('category')
-clustering_2["operatingSystem"] = clustering_2["operatingSystem"].cat.codes
-clustering_2["campaign"] = clustering_2["campaign"].astype('category')
-clustering_2["campaign"] = clustering_2["campaign"].cat.codes
-clustering_2["medium"] = clustering_2["medium"].astype('category')
-clustering_2["medium"] = clustering_2["medium"].cat.codes
-clustering_2["country"] = clustering_2["country"].astype('category')
-clustering_2["country"] = clustering_2["country"].cat.codes
-clustering_2["Product"] = clustering_2["Product"].astype('category')
-clustering_2["Product"] = clustering_2["Product"].cat.codes
-clustering_2["Product_Category"] = clustering_2["Product_Category"].astype('category')
-clustering_2["Product_Category"] = clustering_2["Product_Category"].cat.codes
-
-#Courbe d'elbow
-distortions = [] ; K = range(1,10)
-
-for k in K :
-    kmeanModel = KMeans(init="random", n_clusters=k, max_iter=500)
-    kmeanModel.fit(clustering_2)
-    distortions.append(kmeanModel.inertia_)
-
-plt.figure(figsize=(14,8)) ; plt.plot(K, distortions, 'bx-') ; plt.xlabel('number of clusters')
-plt.ylabel('Distortion') ; plt.title('The Elbow Method showing the optimal number of clusters') 
-
-#la courbe d'elbow montre qu'il est optimal de constituer 4 groupes
-kmeanModel = KMeans(init="random", n_clusters=4, max_iter=500) ; kmeanModel.fit(clustering_2)
-BigQuery_table_2['cluster_4'] = kmeanModel.predict(clustering_2)
-
-#Export des résultats vers Google Cloud Platform BigQuery Storage 
-from pandas.io import gbq
-BigQuery_table_2.to_gbq(destination_table='test.clustering_2', project_id='mrvtestproject45', if_exists='replace')
 
 #dataviz : https://datastudio.google.com/reporting/70144ced-e19d-4010-9d93-721df23ea257/page/NJrXC
 
