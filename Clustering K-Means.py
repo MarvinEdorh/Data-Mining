@@ -124,6 +124,11 @@ eigval = pd.DataFrame({'eigval':eigval.tolist(),'prct_explained':prct_explained.
 #coordonnées des individus
 coord_acp_ind = pd.DataFrame(coord_acp)
 
+#################################### Clustering #########################################
+
+clustering = pd.DataFrame(np.c_[coord_acm_ind.iloc[:,0:96],BigQuery_table.iloc[:,8:11]])
+clustering = pd.DataFrame(np.c_[coord_acm_ind.iloc[:,0:96],coord_acp_ind.iloc[:,0:2]])
+
 col = list(BigQuery_table.columns); del col[0]
 clustering  = pd.DataFrame(np.c_[BigQuery_table.iloc[:,1:11]], columns = col ) 
 clustering["deviceCategory"] = clustering["deviceCategory"].astype('category')
