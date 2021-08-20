@@ -138,7 +138,7 @@ from sklearn.cluster import KMeans ; import matplotlib.pyplot as plt
 distortions = [] ; K = range(1,10)
 
 for k in K :
-    kmeanModel = KMeans(init="random", n_clusters=k, max_iter=500)
+    kmeanModel = KMeans(init="random", n_clusters=k, max_iter=1500)
     kmeanModel.fit(clustering)
     distortions.append(kmeanModel.inertia_)
 
@@ -148,12 +148,12 @@ plt.ylabel('Distortion') ; plt.title('The Elbow Method showing the optimal numbe
 #la courbe d'elbow montre qu'il est optimal de constituer 3 ou 4 clusters, les points de cassure de la courbe
 
 #On crée un modele à 3 cluster
-kmeanModel = KMeans(init="random", n_clusters=3, max_iter=500) ; kmeanModel.fit(clustering)
+kmeanModel = KMeans(init="random", n_clusters=3, max_iter=1500) ; kmeanModel.fit(clustering)
 #On assigne chaque transaction à son cluster
 BigQuery_table['cluster_3'] = kmeanModel.predict(clustering)
 
 #On crée un modele à 4 cluster
-kmeanModel = KMeans(init="random", n_clusters=4, max_iter=500) ; kmeanModel.fit(clustering)
+kmeanModel = KMeans(init="random", n_clusters=4, max_iter=1500) ; kmeanModel.fit(clustering)
 #On assigne chaque pays à son cluster
 BigQuery_table['cluster_4'] = kmeanModel.predict(clustering)
 
