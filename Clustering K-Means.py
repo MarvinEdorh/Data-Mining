@@ -94,7 +94,7 @@ data_acm = pd.DataFrame(np.c_[BigQuery_table.iloc[:,1:8]], columns = col )
                        
 import prince ; acm = prince.MCA(n_components=100) ; acm.fit(data_acm) #on crée le modèle
 
-ev = pd.DataFrame(acm.eigenvalues_) #Valeurs propres
+ev = pd.DataFrame(acm.eigenvalues_) ##on selectionne les axe dont la valeure propre est superieure à 1/Nb variables
 
 #Coordonnées des individes
 coord_acm = acm.transform(data_acm) ; coord_acm_ind = pd.DataFrame(coord_acm)
@@ -120,6 +120,7 @@ coord_acp = acp.fit_transform(data_acp_cr)
 #Valeur propres
 eigval = (n-1)/n*acp.explained_variance_  ; prct_explained = acp.explained_variance_ratio_*100
 eigval = pd.DataFrame({'eigval':eigval.tolist(),'prct_explained':prct_explained.tolist()}) ; eigval
+#on selectionne les axe dont la valeure propre est superieure à 1
 
 #coordonnées des individus
 coord_acp_ind = pd.DataFrame(coord_acp)
