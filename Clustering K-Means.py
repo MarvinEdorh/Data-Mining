@@ -86,9 +86,43 @@ BigQuery_table = {"ID_Transaction":ID_Transaction,
 
 BigQuery_table = pd.DataFrame(BigQuery_table) #BigQuery_table.to_csv('clustering.csv')
 
-##################################################### Clustering #################################################
-
 #On applique le modele K-Means sur des variables numeriqes, on recode les varibles categorielles par un label encoding 
+
+############################################### ACM #######################################################
+col = list(BigQuery_table.columns); del col[0]; del col[7]; del col[7]; del col[7]
+data_acm = pd.DataFrame(np.c_[BigQuery_table.iloc[:,1:8]], columns = col )    
+                       
+import prince ; acm = prince.MCA(n_components=100) ; acm.fit(data_acm) #on crée le modèle
+
+ev = pd.DataFrame(acm.eigenvalues_) #Valeurs propres
+
+#Coordonnées des individes
+coord_acm = acm.transform(data_acm) ; coord_acm_ind = pd.DataFrame(coord_acm)
+
+############################################### ACP ################################################
+
+col = list(BigQuery_table.columns)
+del col[0] ; del col[0] ; del col[0] ; del col[0] ; del col[0] ; del col[0] ; del col[0] ; del col[0]
+data_acp = pd.DataFrame(np.c_[BigQuery_table.iloc[:,8:11]], columns = col) 
+
+data_acp.corr(method='pearson') #corrélations
+
+n = data_acp.shape[0] ; p = data_acp.shape[1] #nombre d'observations ; nombre de variables
+
+from sklearn.preprocessing import StandardScaler #transformation – centrage-réduction
+
+data_acp_cr = StandardScaler().fit_transform(data_acp) ; data_acp_cr = pd.DataFrame(data_acp_cr)
+
+#on crée le modèle
+from sklearn.decomposition import PCA ; acp = PCA(svd_solver='full') 
+coord_acp = acp.fit_transform(data_acp_cr)
+
+#Valeur propres
+eigval = (n-1)/n*acp.explained_variance_  ; prct_explained = acp.explained_variance_ratio_*100
+eigval = pd.DataFrame({'eigval':eigval.tolist(),'prct_explained':prct_explained.tolist()}) ; eigval
+
+#coordonnées des individus
+coord_acp_ind = pd.DataFrame(coord_acp)
 
 col = list(BigQuery_table.columns); del col[0]
 clustering  = pd.DataFrame(np.c_[BigQuery_table.iloc[:,1:11]], columns = col ) 
