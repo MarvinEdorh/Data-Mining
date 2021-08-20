@@ -88,7 +88,7 @@ BigQuery_table = pd.DataFrame(BigQuery_table) #BigQuery_table.to_csv('clustering
 
 #On applique le modele K-Means sur des variables numeriqes, on recode les varibles categorielles par un label encoding 
 
-###################################################### ACM #######################################################
+####################################################### ACM #######################################################
 col = list(BigQuery_table.columns); del col[0]; del col[7]; del col[7]; del col[7]
 data_acm = pd.DataFrame(np.c_[BigQuery_table.iloc[:,1:8]], columns = col )    
                        
@@ -99,7 +99,7 @@ ev = pd.DataFrame(acm.eigenvalues_) #Valeurs propres
 #Coordonnées des individes
 coord_acm = acm.transform(data_acm) ; coord_acm_ind = pd.DataFrame(coord_acm)
 
-############################################### ACP ################################################
+####################################################### ACP ########################################################
 
 col = list(BigQuery_table.columns)
 del col[0] ; del col[0] ; del col[0] ; del col[0] ; del col[0] ; del col[0] ; del col[0] ; del col[0]
@@ -124,7 +124,7 @@ eigval = pd.DataFrame({'eigval':eigval.tolist(),'prct_explained':prct_explained.
 #coordonnées des individus
 coord_acp_ind = pd.DataFrame(coord_acp)
 
-#################################### Clustering #########################################
+################################################### Clustering #######################################################
 
 clustering = pd.DataFrame(np.c_[coord_acm_ind.iloc[:,0:96],BigQuery_table.iloc[:,8:11]])
 clustering = pd.DataFrame(np.c_[coord_acm_ind.iloc[:,0:96],coord_acp_ind.iloc[:,0:2]])
