@@ -100,7 +100,7 @@ ev = pd.DataFrame(acm.eigenvalues_) ##on selectionne les axe dont la valeure pro
 coord_acm = acm.transform(data_acm) ; coord_acm_ind = pd.DataFrame(coord_acm)
 
 ####################################################### ACP ##########################################################
-#si les varibles numérique sont corrélés on peut egalement les transformées en effectuant une ACP
+#si les varibles numériques sont corrélés on peut également les transformées en effectuant une ACP
 col = list(BigQuery_table.columns)
 del col[0] ; del col[0] ; del col[0] ; del col[0] ; del col[0] ; del col[0] ; del col[0] ; del col[0]
 data_acp = pd.DataFrame(np.c_[BigQuery_table.iloc[:,8:11]], columns = col) 
