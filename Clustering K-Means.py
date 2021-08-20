@@ -88,7 +88,7 @@ BigQuery_table = pd.DataFrame(BigQuery_table) #BigQuery_table.to_csv('clustering
 
 #On applique le modele K-Means sur des variables numeriqes, on recode les varibles categorielles par un label encoding 
 
-############################################### ACM #######################################################
+###################################################### ACM #######################################################
 col = list(BigQuery_table.columns); del col[0]; del col[7]; del col[7]; del col[7]
 data_acm = pd.DataFrame(np.c_[BigQuery_table.iloc[:,1:8]], columns = col )    
                        
