@@ -124,7 +124,7 @@ eigval = pd.DataFrame({'eigval':eigval.tolist(),'prct_explained':prct_explained.
 #coordonnées des individus
 coord_acp_ind = pd.DataFrame(coord_acp)
 
-################################################### Clustering #######################################################
+##################################################### Clustering #######################################################
 
 clustering = pd.DataFrame(np.c_[coord_acm_ind.iloc[:,0:96],BigQuery_table.iloc[:,8:11]])
 
