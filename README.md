@@ -21,8 +21,9 @@ L'inconvénient du modelé K-Means est qu'on ne sait pas a priori quel est le no
 
 ![Figure 2021-08-20 201348](https://user-images.githubusercontent.com/83826055/130276345-b0c1d754-406f-4642-ab88-181224ad96c3.png)
 
-Le nombre optimal de clusters qu'il faut choisir afin que la population soit découpée de la meilleure des manières est celui du point des abscisses où la courbe marque une cassure et devient linéaire. On voit ici que la meilleure des manières de segmenter nos acheteurs est de les séparer en 3 ou 4 groupes. On vera que ce qui caractérise le plus les clusters constitués sont le niveau de CA par transaction. On renvoie ainsi ces résultats vers Google Cloud pour une analyse plus en détail de ce qui différencie ces différents clusters sur un outils BI (https://datastudio.google.com/s/hRcohz4T4DI).
-
+Le nombre optimal de clusters qu'il faut choisir afin que la population soit découpée de la meilleure des manières est celui du point des abscisses où la courbe marque une cassure et devient linéaire. On voit ici que la meilleure des manières de segmenter nos acheteurs est de les séparer en 3 ou 4 groupes. On vera que ce qui caractérise le plus les clusters constitués sont le niveau de CA par transaction. On renvoie ainsi ces résultats vers Google Cloud pour une analyse plus en détail de ce qui différencie ces différents clusters sur un outils BI.
+# Data Visualization 
+Segmentaion : https://datastudio.google.com/s/hRcohz4T4DI
 # Kaplan Meier Survival
 Demo : https://github.com/MarvinEdorh/Data-Mining/blob/main/Kaplan%20Meier%20Survival.py
 
