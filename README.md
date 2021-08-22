@@ -22,7 +22,9 @@ L'inconvénient du modelé K-Means est que l'on ne sait pas à priori quel est l
 
 ![Figure 2021-08-20 201348](https://user-images.githubusercontent.com/83826055/130276345-b0c1d754-406f-4642-ab88-181224ad96c3.png)
 
-Le nombre optimal de clusters qu'il faut choisir afin que la population soit découpée de la meilleure des manières est celui du point des abscisses où la courbe marque une cassure et devient linéaire. On voit ici que la meilleure des manières de segmenter nos acheteurs est de les séparer en 3 ou 4 groupes. On verra que ce qui caractérise le plus les clusters constitués est le niveau de CA par transaction. On renvoie ainsi ces résultats vers Google Cloud pour une analyse plus en détail de ce qui différencie ces différents clusters sur un outil BI : https://datastudio.google.com/s/hRcohz4T4DI.
+Le nombre optimal de clusters qu'il faut choisir afin que la population soit découpée de la meilleure des manières est celui du point des abscisses où la courbe marque une cassure et devient linéaire. On voit ici que la meilleure des manières de segmenter nos acheteurs est de les séparer en 3 ou 4 groupes. On verra que ce qui caractérise le plus les clusters constitués est le niveau de CA par transaction. On renvoie ainsi ces résultats vers Google Cloud pour une analyse plus en détail de ce qui différencie ces différents clusters sur un outil BI : https://datastudio.google.com/s/hRcohz4T4DI. 
+Ce modèle peut également être utiliser de manière prédictive afin d'assigner de nouveaux individus aux goupes dejà existant : 
+https://github.com/MarvinEdorh/Machine-Learning/blob/main/README.md
 # Kaplan Meier Survival
 Demo : https://github.com/MarvinEdorh/Data-Mining/blob/main/Kaplan%20Meier%20Survival.py
 
@@ -43,6 +45,4 @@ On regarde maintenant la survie en fonction du device et on constate que la surv
 
 ![KMF_Device_2](https://user-images.githubusercontent.com/83826055/129450589-e52c90a2-8391-4d86-9827-43318689c2ae.png)
 
-Si on analyse maintenant la survie en fonction du device, on voit que c'est la version sur tablet qui a la meilleure rétention. La probabilité qu'un individu continue d'acheter un an après sa première visite est de 95% sur tablet et de 40% sur desktop. Ce résultat peut néanmoins comporter un biais car on voit que nos fonctions de conversion de rétention sont assez similaires, cela peut en fait signifier que la plupart des individus n'ont en fait réalisé qu'une seule transaction et que ceux qui l'ont fait sur tablet l'ont fait tardivement. Pour mieux analyser la rétention il faudrait ajouter aux individus censurés ceux qui n'ont effectué qu'un seul achat
-# Machine Learning
-https://github.com/MarvinEdorh/Machine-Learning/blob/main/README.md
+Si on analyse maintenant la survie en fonction du device, on voit que c'est la version sur tablet qui a la meilleure rétention. La probabilité qu'un individu continue d'acheter un an après sa première visite est de 95% sur tablet et de 40% sur desktop. Ce résultat peut néanmoins comporter un biais car on voit que nos fonctions de conversion de rétention sont assez similaires, cela peut en fait signifier que la plupart des individus n'ont en fait réalisé qu'une seule transaction et que ceux qui l'ont fait sur tablet l'ont fait tardivement. Pour mieux analyser la rétention il faudrait ajouter aux individus censurés ceux qui n'ont effectué qu'un seul achat.
