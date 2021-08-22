@@ -43,3 +43,5 @@ On regarde maintenant la survie en fonction du device et on constate que la surv
 ![KMF_Device_2](https://user-images.githubusercontent.com/83826055/129450589-e52c90a2-8391-4d86-9827-43318689c2ae.png)
 
 Si on analyse maintenant la survie en fonction du device, on voit que c'est la version sur tablet qui a la meilleure rétention. La probabilité qu'un individu continue d'acheter un an après sa première visite est de 95% sur tablet et de 40% sur desktop. Ce résultat peut néanmoins comporter un biais car on voit que nos fonctions de conversion de rétention sont assez similaires, cela peut en fait signifier que la plupart des individus n'ont en fait réalisé qu'une seule transaction et que ceux qui l'ont fait sur tablet l'ont fait tardivement. Pour mieux analyser la rétention il faudrait ajouter aux individus censurés ceux qui n'ont effectué qu'un seul achat.
+# 
+https://github.com/MarvinEdorh/Machine-Learning/blob/main/README.md
