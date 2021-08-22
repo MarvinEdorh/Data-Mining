@@ -92,7 +92,7 @@ kmf.plot(); plt.xlabel("time in days"); plt.ylabel("survival probability"); plt.
 plt.figure(figsize=(15,10)) ; kmf.plot() ; plt.xlabel('time in days') ; plt.ylabel('survival probability') 
 plt.title("Kaplan Meier Survival Function") ; plt.ylim([0.45,1]) 
 
-####################################### segmentaion & test du log-rank ####################################################
+########################################## segmentaion & test du log-rank ################################################
 
 #On divise le jeu de données en fonction des segment
 desktop = survival_data.query("device == 'desktop'")
