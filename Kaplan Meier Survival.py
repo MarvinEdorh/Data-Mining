@@ -72,15 +72,15 @@ BigQuery_table = pd.DataFrame(BigQuery_table)
 
 ########################################### Analyse de survie de Kaplan Meier ###########################################
 
-from lifelines import KaplanMeierFitter ; import matplotlib.pyplot as plt
-
 #On importe le jeu de donnée de la table BigQuery
 col = list(BigQuery_table.columns); del col[0] 
 survival_data = pd.DataFrame(np.c_[BigQuery_table.iloc[:,1:4]], columns = col, index = BigQuery_table['fullvisitorid']) 
 
 #On crée le modèle
+from lifelines import KaplanMeierFitter ; import matplotlib.pyplot as plt
 kmf = KaplanMeierFitter() ; kmf.fit(survival_data['time'],survival_data['transaction'])
 
+#Résultats
 event_table = kmf.event_table #table des évenements
 kmf.predict(11) #prediction d'etre en vie à 11 jours
 survival_probability = kmf.survival_function_ #table des probabilités de survie
@@ -92,7 +92,7 @@ kmf.plot(); plt.xlabel("time in days"); plt.ylabel("survival probability"); plt.
 plt.figure(figsize=(15,10)) ; kmf.plot() ; plt.xlabel('time in days') ; plt.ylabel('survival probability') 
 plt.title("Kaplan Meier Survival Function") ; plt.ylim([0.45,1]) 
 
-################################################## test du log-rank ####################################################
+####################################### segmentaion & test du log-rank ####################################################
 
 #On divise le jeu de données en fonction des segment
 desktop = survival_data.query("device == 'desktop'")
