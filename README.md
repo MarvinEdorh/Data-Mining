@@ -23,6 +23,7 @@ L'inconvénient du modelé K-Means est que l'on ne sait pas à priori quel est l
 ![Figure 2021-08-20 201348](https://user-images.githubusercontent.com/83826055/130276345-b0c1d754-406f-4642-ab88-181224ad96c3.png)
 
 Le nombre optimal de clusters qu'il faut choisir afin que la population soit découpée de la meilleure des manières est celui du point des abscisses où la courbe marque une cassure et devient linéaire. On voit ici que la meilleure des manières de segmenter nos acheteurs est de les séparer en 3 ou 4 groupes. On verra que ce qui caractérise le plus les clusters constitués est le niveau de CA par transaction. On renvoie ainsi ces résultats vers Google Cloud pour une analyse plus en détail de ce qui différencie ces différents clusters sur un outil BI : https://datastudio.google.com/s/hRcohz4T4DI. 
+
 Ce modèle peut également être utiliser de manière prédictive afin d'assigner de nouveaux individus aux goupes dejà existant : 
 https://github.com/MarvinEdorh/Machine-Learning/blob/main/README.md
 # Kaplan Meier Survival
