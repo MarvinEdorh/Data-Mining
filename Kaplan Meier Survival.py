@@ -113,8 +113,7 @@ plt.xlabel("time in days") ; plt.ylabel("survival probability") ; plt.title("Kap
 
 #test du log-rank
 from lifelines.statistics import multivariate_logrank_test
-log_rank_test = multivariate_logrank_test(survival_data['time'], survival_data['device'], 
-                                          survival_data['transaction'])
+log_rank_test = multivariate_logrank_test(survival_data['time'], survival_data['device'], survival_data['transaction'])
 
 log_rank_test.summary
 #les différence de survie sont significative car la p-valeur est inferieure à 5%
